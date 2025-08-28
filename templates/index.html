@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manuel Sumalpong III</title>
+    <link rel="icon" type="image/svg+xml" href="../static/svg/favicon.svg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+<button type="button" class="mobile-nav-toggle d-lg-none"><i class="bi bi-list"></i></button>
+<header id="header">
+    <div class="profile">
+        <img src="https://file.garden/aKlQJzNQGAe7XOXw/website_resume/profile/profile_pic.webp" alt="Profile Image" class="profile-img">
+        <h1>Manuel Sumalpong III</h1>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="#hero" class="active"><i class="bi bi-house"></i> Home</a></li>
+                <li><a href="#about"><i class="bi bi-person"></i> About</a></li>
+                <li><a href="#timeline"><i class="bi bi-file-text"></i> Timeline</a></li>
+                <li><a href="#skills"><i class="bi bi-tools"></i> Skills</a></li>
+                <li><a href="#portfolio"><i class="bi bi-images"></i> Portfolio</a></li>
+                <li><a href="#certifications"><i class="bi bi-award"></i> Certifications</a></li>
+                <li><a href="#contact"><i class="bi bi-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="social-links">
+            <a href="https://www.facebook.com/manuel.sumalpong/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+<path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+</svg></a>
+            <a href="https://www.linkedin.com/in/manuel-sumalpong-a9aa67153" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+<path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+</svg></a>
+            <a href="https://x.com/ManuelSuma53" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
+<path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+</svg></a>
+            <a href="https://ph.jobstreet.com/profile/manuel-sumalpong-lVzKnGY1qB" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-briefcase-fill" viewBox="0 0 16 16">
+<path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v1.384l7.614 2.03a1.5 1.5 0 0 0 .772 0L16 5.884V4.5A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5"/>
+<path d="M0 12.5A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5V6.85L8.129 8.947a.5.5 0 0 1-.258 0L0 6.85z"/>
+</svg></a>
+            <a href="https://github.com/mannyboyS" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+</svg></a>
+        </div>
+    </div>
+</header>
+
+<main id="main">
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h2>Manuel Sumalpong III</h2>
+            <p>Mechanical Engineering Graduate and Python Programmer</p>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <img src="https://file.garden/aKlQJzNQGAe7XOXw/website_resume/profile/ojt1_cropped_retouched.webp" class="img-fluid" alt="repairing a truck engine">
+                </div>
+                <div class="col-lg-8 pt-4 pt-lg-0 content">
+                    <h3>Mechanical Engineering Graduate and Python Programmer</h3>
+                    <p>
+                        Recent BS in Mechanical Engineering graduate with hands-on experience in mechanical design,
+                    fabrication, and prototyping. Combines technical expertise in SolidWorks, Python, and
+                    machining with strong problem-solving skills to develop innovative engineering solutions.
+                    Thrives in collaborative, fast-paced environments.
+                    </p>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <ul>
+                                <li><strong>Birthday:</strong> <span>20 March 2002</span></li>
+                                <li><strong>Phone:</strong> <span>+63 928 968 8959</span></li>
+                                <li><strong>City:</strong> <span>Cebu City</span></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6">
+                            <ul>
+                                <li><strong>Age:</strong> <span>23</span></li>
+                                <li><strong>Degree:</strong> <span>BS in Mechanical Engineering</span></li>
+                                <li><strong>Email:</strong> <span style="word-break: break-word;">manuelsumalpongiii@gmail.com</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p>
+                        I develop data-driven engineering solutions by translating the performance of physical
+                        systems into actionable insights. My specialization involves applying Python to mechanical
+                        challenges, such as automating design processes, interpreting experimental and sensor data, and
+                        creating software tools that ensure digital models accurately predict real-world behavior.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="timeline" class="timeline">
+        <div class="container">
+            <div class="section-title">
+                <h2>Timeline</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3 class="timeline-title">Education</h3>
+
+                    <div class="timeline-item">
+                        <h4>Bachelor of Science in Mechanical Engineering</h4>
+                        <h5>2021 - 2025</h5>
+                        <p><em>Silliman University, Dumaguete City</em></p>
+                        <ul>
+                            <li>Graduated with hands-on experience in machine design and project leadership.</li>
+                            <li>Successfully led a team in the design and development of an automated egg sorting machine.</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>Senior High School</h4>
+                        <h5>2019 - 2021</h5>
+                        <p><em>Silliman University Senior High School, Dumaguete City</em></p>
+                        <ul>
+                            <li>Took the Science, Technology, Engineering, and Mathematics (STEM) strand.</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>High School</h4>
+                        <h5>2015 - 2019</h5>
+                        <p><em>Saint Mary's Academy of Dipolog - SMAD</em></p>
+                        <ul>
+                            <li>Became class president for 3 total years.</li>
+                            <li>Learned virtues while improving core values.</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6">
+                    <h3 class="timeline-title">Professional Experience</h3>
+
+                    <div class="timeline-item">
+                        <h4>Mechanical Engineering Intern</h4>
+                        <h5>June to July 2024</h5>
+                        <p><em>VenRay Construction Corp., Cagayan de Oro</em></p>
+                        <ul>
+                            <li>Contributed to engine repair and preventative maintenance tasks
+                                for heavy machinery, building hands-on mechanical skills.</li>
+                            <li>Gained exposure to large-scale industrial manufacturing by
+                                analyzing the workflow and safety procedures of a functional cement power plant.</li>
+                            <li>Developed basic operational proficiency with heavy equipment,
+                                including a backhoe, through supervised training sessions.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills section-bg">
+        <div class="container">
+            <div class="section-title">
+                <h2>Skills</h2>
+                <p>Tools and Technologies</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3 class="skills-title">Engineering Technologies</h3>
+                    <ul class="skills-list">
+                        <li><i class="bi bi-check-circle"></i> SolidWorks</li>
+                        <li><i class="bi bi-check-circle"></i> AutoCAD</li>
+                        <li><i class="bi bi-check-circle"></i> SketchUp</li>
+                        <li><i class="bi bi-check-circle"></i> Festo FluidSIM</li>
+                        <li><i class="bi bi-check-circle"></i> Ladder Logic</li>
+                        <li><i class="bi bi-check-circle"></i> PLC Programming</li>
+                        <li><i class="bi bi-check-circle"></i> Mechatronics</li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-6">
+                    <h3 class="skills-title">Other Technologies</h3>
+                    <ul class="skills-list">
+                        <li><i class="bi bi-check-circle"></i> Python Scripting and Automation</li>
+                        <li><i class="bi bi-check-circle"></i> Backend Web Development with Flask and SQL</li>
+                        <li><i class="bi bi-check-circle"></i> Frontend Web Development with HTML 5, CSS 3, and Bootstrap 5</li>
+                        <li><i class="bi bi-check-circle"></i> Data Analysis with Pandas, NumPy, Matplotlib, and Plotly</li>
+                        <li><i class="bi bi-check-circle"></i> Git, GitHub and Version Control</li>
+                        <li><i class="bi bi-check-circle"></i> Web Scraping with Beautiful Soup and Selenium</li>
+                        <li><i class="bi bi-check-circle"></i> Basic C++ Object-Oriented Programming</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>Portfolio</h2>
+                <p>Personal Projects and Collaborations</p>
+            </div>
+
+            <div class="row portfolio-container">
+
+                {% for project in projects %}
+                <div class="col-lg-4 col-md-6 portfolio-item">
+                    <div class="portfolio-wrap" data-project-id="{{ project['id'] }}">
+                        <img src="{{ project['thumbnail_img'] }}" class="img-fluid" alt="{{ project['title'] }}">
+                        <div class="portfolio-info">
+                            <h4>{{ project['title'] }}</h4>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications" class="certifications">
+        <div class="container">
+            <div class="section-title">
+                <h2>Certifications</h2>
+                <p>Professional Certifications and Training Certificates (Work in Progress)</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6 cert-item">
+                    <div class="cert-box">
+                        <div class="cert-content">
+                            <div class="cert-icon">
+                                <i class="bi bi-award"></i>
+                            </div>
+                            <h4>Mechanical Engineering Diploma (Pending)</h4>
+                            <p>Bachelor's Degree in Mechanical Engineering from Silliman University</p>
+                        </div>
+                            <i class="bi bi-download"></i> Not Yet Available
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 cert-item">
+                    <div class="cert-box">
+                        <div class="cert-content">
+                            <div class="cert-icon">
+                                <i class="bi bi-patch-check"></i>
+                            </div>
+                            <h4>Mechatronics Servicing NC II (Pending)</h4>
+                            <p>Comprehensive Training Certificate Covering Electro-pneumatic Systems</p>
+                        </div>
+                            <i class="bi bi-download"></i> Not Yet Available
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 cert-item">
+                    <div class="cert-box">
+                        <div class="cert-content">
+                            <div class="cert-icon">
+                                <i class="bi bi-trophy"></i>
+                            </div>
+                            <h4>100 Days of Code: Python Bootcamp (In Progress)</h4>
+                            <p>Online Project-Based Python Training in Udemy</p>
+                        </div>
+                            <i class="bi bi-download"></i> Not Yet Available
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact</h2>
+                <p>Have a project in mind or want to discuss a potential opportunity? Please don't hesitate to get in touch.</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="contact-box">
+                        <div class="row g-0">
+                            <div class="col-md-5 contact-info">
+                                <div class="info-box">
+                                    <i class="bi bi-geo-alt"></i>
+                                    <div>
+                                        <h3>Address</h3>
+                                        <p class="address-text">Cebu&nbsp;City, Philippines</p>
+                                    </div>
+                                </div>
+
+                                <div class="info-box">
+                                    <i class="bi bi-envelope"></i>
+                                    <div>
+                                        <h3>Email</h3>
+                                        <p class="email-text">manuelsumalpongiii@gmail.com</p>
+                                    </div>
+                                </div>
+
+                                <div class="info-box">
+                                    <i class="bi bi-phone"></i>
+                                    <div>
+                                        <h3>Call</h3>
+                                        <p class="phone-text">+63 928 968 8959</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-7 contact-form">
+                            <!-- Success/Error Messages -->
+                            <div id="form-messages" style="display: none; margin-bottom: 20px;">
+                                <div id="success-message" class="alert alert-success" style="display: none;">
+                                    <i class="bi bi-check-circle"></i> Message sent successfully! I'll get back to you soon.
+                                </div>
+                                <div id="error-message" class="alert alert-danger" style="display: none;">
+                                    <i class="bi bi-exclamation-triangle"></i> <span id="error-text">Something went wrong. Please try again.</span>
+                                </div>
+                            </div>
+
+                            <form id="contactForm" class="contact-email-form">
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" id="submit-btn">
+                                        <span class="btn-text">Send Message</span>
+                                        <span class="btn-spinner" style="display: none;">
+                                            <i class="bi bi-arrow-repeat" style="animation: spin 1s linear infinite;"></i> Sending...
+                                        </span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+        <div id="portfolioModal" class="portfolio-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title" id="modalTitle"></h2>
+            <button class="modal-close" id="modalClose">
+                <i class="bi bi-x"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-section">
+                <div class="modal-section-title">Role(s)</div>
+                <div class="modal-role-list" id="modalRole"></div>
+            </div>
+
+            <div class="modal-section">
+                <div class="modal-section-title">Summary</div>
+                <div class="modal-section-content" id="modalSummary"></div>
+            </div>
+
+            <div class="modal-section">
+                <div class="modal-section-title">Tools Used</div>
+                <div class="modal-tools-list" id="modalTools"></div>
+            </div>
+
+            <div class="modal-section">
+                <div class="modal-section-title">Result</div>
+                <div class="modal-section-content" id="modalResult"></div>
+            </div>
+
+            <div class="modal-section">
+                <div class="modal-section-title">What I Learned</div>
+                <div class="modal-section-content" id="modalLearned"></div>
+            </div>
+
+            <div class="modal-section">
+                <div class="modal-section-title">Project Images</div>
+                <div class="modal-images" id="modalImages"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="copyright text-center">
+                    &copy; 2025 Manuel Sumalpong III
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script>
+    window.portfolioData = {{ projects | tojson }};
+</script>
+</body>
+</html>
