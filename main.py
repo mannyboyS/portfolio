@@ -7,7 +7,7 @@ import os
 
 my_pass = os.environ.get('APP_PASSWORD')
 my_email = os.environ.get('EMAIL')
-db_uri = os.environ.get('DB_URI', "sqlite:///portfolio.db")
+db_uri = os.environ.get('DB_URI')
 
 app = Flask(__name__)
 
