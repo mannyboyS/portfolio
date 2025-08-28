@@ -83,4 +83,4 @@ def send_mail():
         return jsonify({'success': False, 'message': 'Failed to send message. Please try again.'}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
