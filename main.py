@@ -82,5 +82,12 @@ def send_mail():
         print(f"Error sending email: {str(e)}")
         return jsonify({'success': False, 'message': 'Failed to send message. Please try again.'}), 500
 
+@app.route('/pipe-flashcards')
+def index():
+    return render_template('flashcards.html')
+
+@app.route('/pipe-flashcards-study')
+def study():
+    return render_template('flashcards_study.html')
 if __name__ == '__main__':
     app.run()

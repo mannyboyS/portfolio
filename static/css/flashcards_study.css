@@ -1,0 +1,245 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Roboto, "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.header p {
+    font-size: 1em;
+    opacity: 0.9;
+}
+
+.card-counter {
+    text-align: center;
+    color: white;
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.flashcard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.flashcard {
+    width: 100%;
+    max-width: 700px;
+    height: 450px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.flashcard-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flashcard.flipped .flashcard-inner {
+    transform: rotateY(180deg);
+}
+
+.flashcard-front, .flashcard-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.3);
+    overflow-y: auto;
+}
+
+.flashcard-front {
+    background: rgba(255,255,255,0.95);
+    color: #333;
+}
+
+.flashcard-back {
+    background: #2d3748;
+    color: #fff;
+    transform: rotateY(180deg);
+}
+
+.card-content {
+    text-align: left;
+    width: 100%;
+}
+
+.question-text {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    color: #2d3748;
+    font-weight: 500;
+}
+
+.choices {
+    list-style: none;
+    padding: 0;
+}
+
+.choices li {
+    padding: 12px 0;
+    font-size: 1.05em;
+    line-height: 1.5;
+    color: #4a5568;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.choices li:last-child {
+    border-bottom: none;
+}
+
+.answer {
+    font-size: 2em;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    background: rgba(255,255,255,0.2);
+    border: 2px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.btn:hover {
+    background: rgba(255,255,255,0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-shuffle {
+    background: rgba(255,255,255,0.25);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: rgba(255,255,255,0.6);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+.actions {
+    text-align: center;
+}
+
+.btn-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 10px 20px;
+    display: inline-block;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.btn-link:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2em;
+    }
+
+    .flashcard {
+        height: 400px;
+    }
+
+    .flashcard-front, .flashcard-back {
+        padding: 25px;
+    }
+
+    .question-text {
+        font-size: 1.05em;
+    }
+
+    .choices li {
+        font-size: 0.95em;
+    }
+
+    .answer {
+        font-size: 1.6em;
+    }
+
+    .btn {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+}

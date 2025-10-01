@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Mode - Flashcards</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/flashcards_study.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Study Mode</h1>
+        </div>
+
+        <div class="card-counter">
+            <span id="current-card">1</span> / <span id="total-cards">17</span>
+        </div>
+
+        <div class="flashcard-container">
+            <div class="flashcard" id="flashcard" onclick="flipCard()">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="card-content">
+                            <div class="question-text" id="question-text"></div>
+                            <ul class="choices" id="choices-list"></ul>
+                        </div>
+                    </div>
+                    <div class="flashcard-back">
+                        <div class="card-content">
+                            <div class="answer" id="answer-text"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-prev" onclick="previousCard()" id="prev-btn">
+                ← Previous
+            </button>
+            <button class="btn btn-shuffle" onclick="shuffleCards()">
+                🔀 Shuffle
+            </button>
+            <button class="btn btn-next" onclick="nextCard()" id="next-btn">
+                Next →
+            </button>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+
+        <div class="actions">
+            <a href="/pipe-flashcards" class="btn-link">← Back to Grid View</a>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/flashcards_study.js') }}"></script>
+</body>
+</html>
