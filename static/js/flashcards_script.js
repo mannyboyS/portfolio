@@ -1,5 +1,4 @@
 const flashcardsData = [
-    // Questions 1-17 (existing)
     {
         number: 1,
         question: "Is the most common dryer used which consist of rotating cylinder inside which the materials flow while getting in contact with hot gas.",
@@ -5466,10 +5465,41 @@ function updatePagination() {
     const firstBtnTop = document.getElementById('first-btn-top');
     const lastBtnTop = document.getElementById('last-btn-top');
 
-    if (prevBtnTop) prevBtnTop.disabled = currentPage === 1;
-    if (nextBtnTop) nextBtnTop.disabled = currentPage === totalPages;
-    if (firstBtnTop) firstBtnTop.disabled = currentPage === 1;
-    if (lastBtnTop) lastBtnTop.disabled = currentPage === totalPages;
+    if (prevBtnTop) {
+        prevBtnTop.disabled = currentPage === 1;
+        if (currentPage === 1) {
+            prevBtnTop.classList.add('disabled');
+        } else {
+            prevBtnTop.classList.remove('disabled');
+        }
+    }
+
+    if (nextBtnTop) {
+        nextBtnTop.disabled = currentPage === totalPages;
+        if (currentPage === totalPages) {
+            nextBtnTop.classList.add('disabled');
+        } else {
+            nextBtnTop.classList.remove('disabled');
+        }
+    }
+
+    if (firstBtnTop) {
+        firstBtnTop.disabled = currentPage === 1;
+        if (currentPage === 1) {
+            firstBtnTop.classList.add('disabled');
+        } else {
+            firstBtnTop.classList.remove('disabled');
+        }
+    }
+
+    if (lastBtnTop) {
+        lastBtnTop.disabled = currentPage === totalPages;
+        if (currentPage === totalPages) {
+            lastBtnTop.classList.add('disabled');
+        } else {
+            lastBtnTop.classList.remove('disabled');
+        }
+    }
 
     // Update button states for BOTTOM pagination
     const prevBtnBottom = document.getElementById('prev-page-btn-bottom');
@@ -5477,10 +5507,41 @@ function updatePagination() {
     const firstBtnBottom = document.getElementById('first-btn-bottom');
     const lastBtnBottom = document.getElementById('last-btn-bottom');
 
-    if (prevBtnBottom) prevBtnBottom.disabled = currentPage === 1;
-    if (nextBtnBottom) nextBtnBottom.disabled = currentPage === totalPages;
-    if (firstBtnBottom) firstBtnBottom.disabled = currentPage === 1;
-    if (lastBtnBottom) lastBtnBottom.disabled = currentPage === totalPages;
+    if (prevBtnBottom) {
+        prevBtnBottom.disabled = currentPage === 1;
+        if (currentPage === 1) {
+            prevBtnBottom.classList.add('disabled');
+        } else {
+            prevBtnBottom.classList.remove('disabled');
+        }
+    }
+
+    if (nextBtnBottom) {
+        nextBtnBottom.disabled = currentPage === totalPages;
+        if (currentPage === totalPages) {
+            nextBtnBottom.classList.add('disabled');
+        } else {
+            nextBtnBottom.classList.remove('disabled');
+        }
+    }
+
+    if (firstBtnBottom) {
+        firstBtnBottom.disabled = currentPage === 1;
+        if (currentPage === 1) {
+            firstBtnBottom.classList.add('disabled');
+        } else {
+            firstBtnBottom.classList.remove('disabled');
+        }
+    }
+
+    if (lastBtnBottom) {
+        lastBtnBottom.disabled = currentPage === totalPages;
+        if (currentPage === totalPages) {
+            lastBtnBottom.classList.add('disabled');
+        } else {
+            lastBtnBottom.classList.remove('disabled');
+        }
+    }
 
     // Generate page numbers for both top and bottom
     generatePageNumbers(totalPages, 'page-numbers-top');
@@ -5491,38 +5552,84 @@ function generatePageNumbers(totalPages, containerId) {
     const pageNumbersContainer = document.getElementById(containerId);
     if (!pageNumbersContainer) return;
 
-    const maxVisible = 7;
+    // Determine max visible pages based on screen size
+    let maxVisible;
+    if (window.innerWidth < 480) {
+        maxVisible = 3; // Very small screens: show only 3 numbers
+    } else if (window.innerWidth < 768) {
+        maxVisible = 5; // Small screens: show 5 numbers
+    } else {
+        maxVisible = 7; // Larger screens: show 7 numbers
+    }
+
     let pages = [];
 
     if (totalPages <= maxVisible) {
+        // Show all pages if total is less than max visible
         pages = Array.from({ length: totalPages }, (_, i) => i + 1);
     } else {
+        // Always show first page
         pages.push(1);
 
-        let startPage = Math.max(2, currentPage - 2);
-        let endPage = Math.min(totalPages - 1, currentPage + 2);
+        let startPage, endPage;
 
+        if (currentPage <= Math.floor(maxVisible / 2) + 1) {
+            // Near the beginning
+            startPage = 2;
+            endPage = maxVisible - 1;
+        } else if (currentPage >= totalPages - Math.floor(maxVisible / 2)) {
+            // Near the end
+            startPage = totalPages - maxVisible + 2;
+            endPage = totalPages - 1;
+        } else {
+            // In the middle
+            startPage = currentPage - Math.floor((maxVisible - 2) / 2);
+            endPage = currentPage + Math.floor((maxVisible - 2) / 2);
+        }
+
+        // Add ellipsis after first page if needed
         if (startPage > 2) {
             pages.push('...');
         }
 
+        // Add middle pages
         for (let i = startPage; i <= endPage; i++) {
             pages.push(i);
         }
 
+        // Add ellipsis before last page if needed
         if (endPage < totalPages - 1) {
             pages.push('...');
         }
 
+        // Always show last page
         pages.push(totalPages);
     }
 
     pageNumbersContainer.innerHTML = pages.map(page => {
         if (page === '...') {
-            return '<div class="page-number ellipsis">...</div>';
+            return '<span class="page-number ellipsis">...</span>';
         }
-        const activeClass = page === currentPage ? 'active' : '';
-        return `<div class="page-number ${activeClass}" onclick="goToPage(${page})">${page}</div>`;
+
+        const isActive = page === currentPage;
+        const activeClass = isActive ? 'active' : '';
+
+        // Add mobile classes for responsive hiding - ALL elements stay in same row
+        let mobileClass = '';
+        if (window.innerWidth < 480) {
+            // On very small screens, only show first, current, and last pages
+            if (page !== 1 && page !== totalPages && page !== currentPage) {
+                mobileClass = 'mobile-hidden-sm';
+            }
+        } else if (window.innerWidth < 768) {
+            // On small screens, hide some middle pages
+            if (page !== 1 && page !== totalPages &&
+                Math.abs(page - currentPage) > 1) {
+                mobileClass = 'mobile-hidden';
+            }
+        }
+
+        return `<button class="page-number ${activeClass} ${mobileClass}" onclick="goToPage(${page})">${page}</button>`;
     }).join('');
 }
 
@@ -5621,6 +5728,13 @@ function lastPage() {
     renderFlashcards();
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+// Add resize listener to regenerate pagination on screen size change
+window.addEventListener('resize', function() {
+    const totalPages = getTotalPages();
+    generatePageNumbers(totalPages, 'page-numbers-top');
+    generatePageNumbers(totalPages, 'page-numbers-bottom');
+});
 
 // Initialize
 renderFlashcards();
