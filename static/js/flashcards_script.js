@@ -5402,7 +5402,7 @@ const flashcardsData = [
     }
 ];
 
-const CARDS_PER_PAGE = 24;
+const CARDS_PER_PAGE = 30;
 let currentPage = 1;
 let flippedCards = new Set();
 
