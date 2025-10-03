@@ -50,7 +50,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .flashcard {
@@ -143,7 +143,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     flex-wrap: wrap;
 }
 
@@ -189,7 +189,7 @@ body {
     background: rgba(255,255,255,0.2);
     border-radius: 10px;
     overflow: hidden;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .progress-fill {
@@ -201,6 +201,7 @@ body {
 
 .actions {
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .btn-link {
@@ -221,21 +222,20 @@ body {
 
 @media (max-width: 768px) {
     body {
-        /* Fixed height and no vertical scrolling on mobile */
         height: 100vh;
         overflow-y: hidden;
         padding: 15px;
         display: flex;
         align-items: center;
         justify-content: center;
+        padding-bottom: max(15px, env(safe-area-inset-bottom));
     }
 
     .container {
-        /* Ensure container fits within viewport */
         height: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: center; /* Keep everything centered */
     }
 
     .header {
@@ -254,29 +254,29 @@ body {
 
     .flashcard-container {
         margin-bottom: 20px;
-        flex: 1;
+        flex: 0 1 auto;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
     .flashcard {
-        height: 350px; /* Slightly reduced to fit better */
+        height: 350px;
         max-height: 50vh;
     }
 
     .flashcard-front, .flashcard-back {
-        padding: 20px; /* Reduced padding for better fit */
+        padding: 20px;
     }
 
     .question-text {
         font-size: 1.05em;
-        margin-bottom: 15px; /* Reduced margin for better fit */
+        margin-bottom: 15px;
     }
 
     .choices li {
         font-size: 0.95em;
-        padding: 10px 0; /* Reduced padding for better fit */
+        padding: 10px 0;
     }
 
     .answer {
@@ -292,6 +292,7 @@ body {
     .btn {
         padding: 12px 20px;
         font-size: 1em;
+        height: 48px;
     }
 
     .progress-bar {
@@ -301,5 +302,8 @@ body {
 
     .actions {
         flex-shrink: 0;
+        /* ADDED BOTTOM PADDING */
+        padding-bottom: 1.5em;
+        margin-bottom: env(safe-area-inset-bottom);
     }
 }
