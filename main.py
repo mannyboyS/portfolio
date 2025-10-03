@@ -89,5 +89,14 @@ def index():
 @app.route('/pipe-flashcards-study')
 def study():
     return render_template('flashcards_study.html')
+
+@app.route('/ppe-handouts')
+def ppe_handouts_index():
+    return render_template('ppe_handouts.html')
+
+@app.route('/ppe-handouts-study')
+def ppe_handouts_study():
+    return render_template('ppe_handouts_study.html')
+
 if __name__ == '__main__':
     app.run()
