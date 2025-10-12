@@ -86,6 +86,26 @@ def send_mail():
 def index():
     return render_template('flashcards.html')
 
+
+@app.route('/get-flashcards-data')
+def get_flashcards_data():
+    import json
+    import os
+
+    try:
+        # Read the JSON file from static/data directory
+        json_path = os.path.join(app.static_folder, 'data', 'pipe_terms.json')
+
+        with open(json_path, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+
+        # Return the entire JSON data
+        return jsonify(data)
+
+    except Exception as e:
+        print(f"Error loading flashcards data: {str(e)}")
+        return jsonify({'error': 'Failed to load flashcards data'}), 500
+
 @app.route('/pipe-flashcards-study')
 def study():
     return render_template('flashcards_study.html')
