@@ -15,6 +15,10 @@ body {
     overflow-x: hidden;
 }
 
+body.mistakes-screen-active {
+    overflow: hidden;
+}
+
 .container {
     max-width: 800px;
     width: 100%;
@@ -88,6 +92,39 @@ body {
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255,255,255,0.3);
     overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}
+
+.flashcard-front::-webkit-scrollbar,
+.flashcard-back::-webkit-scrollbar {
+    width: 10px;
+}
+
+.flashcard-front::-webkit-scrollbar-track,
+.flashcard-back::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.flashcard-front::-webkit-scrollbar-thumb,
+.flashcard-back::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 10px;
+}
+
+.flashcard-front:hover,
+.flashcard-back:hover {
+    scrollbar-color: rgba(102, 126, 234, 0.5) transparent;
+}
+
+.flashcard-front:hover::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(102, 126, 234, 0.6), rgba(118, 75, 162, 0.6));
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.flashcard-back:hover::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(102, 126, 234, 0.7), rgba(118, 75, 162, 0.7));
+    border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .flashcard-front {
@@ -235,7 +272,7 @@ body {
         height: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: center; /* Keep everything centered */
+        justify-content: center;
     }
 
     .header {
@@ -302,8 +339,385 @@ body {
 
     .actions {
         flex-shrink: 0;
-        /* ADDED BOTTOM PADDING */
         padding-bottom: 1.5em;
         margin-bottom: env(safe-area-inset-bottom);
+    }
+}
+
+/* Quiz Mode Styles */
+.quiz-card-container {
+    background: rgba(255,255,255,0.95);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.3);
+}
+
+.choices-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.choice-btn {
+    background: #f7f7f7;
+    border: 2px solid #e2e8f0;
+    padding: 15px 20px;
+    border-radius: 12px;
+    font-size: 1.05em;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #2d3748;
+    width: 100%;
+}
+
+.choice-btn:hover:not(.correct):not(.incorrect):not(.disabled) {
+    background: #e8e8e8;
+    border-color: #667eea;
+    transform: translateX(5px);
+}
+
+.choice-btn.correct {
+    background: #48bb78;
+    border-color: #38a169;
+    color: white;
+    font-weight: bold;
+}
+
+.choice-btn.incorrect {
+    background: #f56565;
+    border-color: #e53e3e;
+    color: white;
+    font-weight: bold;
+}
+
+.choice-btn.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.answer-feedback {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1.1em;
+    text-align: center;
+    font-weight: bold;
+}
+
+.answer-feedback.correct {
+    background: #c6f6d5;
+    color: #22543d;
+    border: 2px solid #48bb78;
+}
+
+.answer-feedback.incorrect {
+    background: #fed7d7;
+    color: #742a2a;
+    border: 2px solid #f56565;
+}
+
+.results-screen {
+    background: rgba(255,255,255,0.95);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.results-screen h2 {
+    color: #667eea;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.score-display {
+    font-size: 3em;
+    font-weight: bold;
+    color: #2d3748;
+    margin: 30px 0;
+}
+
+.score-percentage {
+    font-size: 1.5em;
+    color: #4a5568;
+    margin-bottom: 30px;
+}
+
+.results-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-large {
+    padding: 15px 30px;
+    font-size: 1.1em;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-large:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.btn-secondary {
+    background: #718096;
+}
+
+/* Mistakes Review Styles */
+.mistakes-screen {
+    background: rgba(255,255,255,0.95);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    text-align: center;
+    /* Remove top padding since no heading */
+    padding-top: 20px;
+}
+
+.mistakes-container {
+    max-height: 500px;
+    overflow-y: auto;
+    margin: 20px 0;
+    text-align: left;
+    /* Same scrollbar style as flashcards */
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}
+
+.mistakes-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.mistakes-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.mistakes-container::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 10px;
+}
+
+.mistakes-container:hover {
+    scrollbar-color: rgba(102, 126, 234, 0.5) transparent;
+}
+
+.mistakes-container:hover::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(102, 126, 234, 0.6), rgba(118, 75, 162, 0.6));
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.mistake-card {
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.mistake-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.mistake-header h4 {
+    color: #2d3748;
+    margin: 0;
+    flex: 1;
+    min-width: 120px;
+}
+
+.topic-badge {
+    display: inline-block;
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+}
+
+.mistake-question {
+    font-size: 1.1em;
+    color: #2d3748;
+    margin-bottom: 15px;
+    line-height: 1.5;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.mistake-answers {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.answer-row {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.wrong-answer {
+    background: #fed7d7;
+    color: #742a2a;
+    border: 1px solid #feb2b2;
+}
+
+.correct-answer {
+    background: #c6f6d5;
+    color: #22543d;
+    border: 1px solid #9ae6b4;
+}
+
+.answer-label {
+    font-weight: 600;
+    margin-right: 10px;
+    min-width: 120px;
+}
+
+.answer-text {
+    flex: 1;
+    word-wrap: break-word;
+}
+
+.no-mistakes-message {
+    text-align: center;
+    padding: 40px;
+    color: #4a5568;
+}
+
+.no-mistakes-message h3 {
+    color: #48bb78;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .quiz-card-container, .results-screen, .mistakes-screen {
+        padding: 25px;
+        min-height: auto;
+    }
+
+    .mistakes-screen {
+        padding-top: 15px;
+    }
+
+    .quiz-card-container .question-text {
+        font-size: 1.1em;
+        margin-bottom: 20px;
+    }
+
+    .choice-btn {
+        padding: 12px 15px;
+        font-size: 1em;
+    }
+
+    .score-display {
+        font-size: 2.5em;
+    }
+
+    .score-percentage {
+        font-size: 1.3em;
+    }
+
+    .results-actions {
+        flex-direction: column;
+    }
+
+    .btn-large {
+        width: 100%;
+    }
+
+    .mistake-card {
+        padding: 15px;
+    }
+
+    .mistake-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .mistake-header h4 {
+        min-width: auto;
+    }
+
+    .topic-badge {
+        max-width: 100%;
+        white-space: normal;
+        align-self: flex-start;
+    }
+
+    .answer-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .answer-label {
+        min-width: auto;
+    }
+
+    .mistakes-container {
+        max-height: 400px;
+        margin: 15px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .quiz-card-container {
+        padding: 20px;
+    }
+
+    .quiz-card-container .question-text {
+        font-size: 1em;
+    }
+
+    .choice-btn {
+        font-size: 0.95em;
+    }
+
+    .mistakes-screen {
+        padding: 20px;
+        padding-top: 15px;
+    }
+
+    .mistake-card {
+        padding: 12px;
+    }
+
+    .topic-badge {
+        font-size: 0.75em;
+        padding: 4px 10px;
+    }
+
+    .mistake-question {
+        font-size: 1em;
     }
 }

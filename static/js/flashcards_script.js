@@ -7,6 +7,10 @@ let flippedCards = new Set();
 let currentTopic = 'all';
 let selectedStudyTopics = [];
 
+// Modern Modal Variables
+let selectedMode = 'flashcard';
+let allTopicsSelected = false;
+
 // Load data from JSON file via Flask route
 async function loadFlashcardsData() {
     try {
@@ -122,11 +126,26 @@ function populateTopicDropdown() {
     });
 }
 
-// Study Modal Functions
+// Modern Modal Functions
 function openStudyModal() {
     const modal = document.getElementById('studyModal');
     modal.style.display = 'block';
     populateStudyTopicsChecklist();
+
+    // Show "0 cards selected" in white text initially
+    const validationMessage = document.getElementById('quiz-validation-message');
+    validationMessage.innerHTML = '<span style="color: white;">0 cards selected</span>';
+    validationMessage.style.display = 'block';
+
+    // Reset to default mode - NO auto-select
+    selectMode('flashcard');
+
+    // Clear all selections by default
+    const topicItems = document.querySelectorAll('.topic-item');
+    topicItems.forEach(item => {
+        item.classList.remove('selected');
+    });
+    updateSelectAllButton();
 }
 
 function closeStudyModal() {
@@ -134,61 +153,153 @@ function closeStudyModal() {
     modal.style.display = 'none';
 }
 
+function selectMode(mode) {
+    selectedMode = mode;
+
+    // Update mode cards
+    document.querySelectorAll('.mode-card').forEach(card => {
+        card.classList.remove('active');
+    });
+    document.querySelector(`.mode-card[data-mode="${mode}"]`).classList.add('active');
+}
+
+function adjustQuizItems(change) {
+    const input = document.getElementById('quiz-items');
+    let value = parseInt(input.value) || 10;
+    value = Math.max(1, value + change);
+    input.value = value;
+    validateQuizSettings();
+}
+
 function populateStudyTopicsChecklist() {
     const checklist = document.getElementById('topicsChecklist');
     checklist.innerHTML = '';
 
-    // Add "Select All" option
-    const selectAllDiv = document.createElement('div');
-    selectAllDiv.className = 'topic-checkbox-item';
-    selectAllDiv.innerHTML = `
-        <input type="checkbox" id="selectAll" onchange="toggleAllTopics(this.checked)">
-        <label for="selectAll" class="topic-label"><strong>Select All Topics</strong></label>
-    `;
-    checklist.appendChild(selectAllDiv);
-
-    // Add individual topics
     topics.forEach(topic => {
-        const topicDiv = document.createElement('div');
-        topicDiv.className = 'topic-checkbox-item';
-        topicDiv.innerHTML = `
-            <input type="checkbox" id="topic_${topic.key}" value="${topic.key}" onchange="updateSelectAll()">
-            <label for="topic_${topic.key}" class="topic-label">${topic.name}</label>
+        // Count flashcards for this topic
+        const flashcardCount = flashcardsData.filter(card => card.topic === topic.key).length;
+
+        const topicItem = document.createElement('div');
+        topicItem.className = 'topic-item';
+        topicItem.setAttribute('data-topic', topic.key);
+        topicItem.onclick = function() { toggleTopicModern(this); };
+
+        topicItem.innerHTML = `
+            <div class="topic-name">${topic.name}</div>
+            <div class="topic-count">${flashcardCount} flashcards</div>
+            <div class="topic-check">✓</div>
         `;
-        checklist.appendChild(topicDiv);
+
+        checklist.appendChild(topicItem);
     });
+
+    updateSelectAllButton();
 }
 
-function toggleAllTopics(checked) {
-    const checkboxes = document.querySelectorAll('#topicsChecklist input[type="checkbox"]:not(#selectAll)');
-    checkboxes.forEach(checkbox => {
-        checkbox.checked = checked;
-    });
+function toggleTopicModern(topicElement) {
+    topicElement.classList.toggle('selected');
+    validateQuizSettings();
+    updateSelectAllButton();
 }
 
-function updateSelectAll() {
-    const checkboxes = document.querySelectorAll('#topicsChecklist input[type="checkbox"]:not(#selectAll)');
-    const selectAll = document.getElementById('selectAll');
-    const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
-    const someChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+function toggleAllTopicsModern() {
+    const topicItems = document.querySelectorAll('.topic-item');
+    allTopicsSelected = !allTopicsSelected;
 
-    selectAll.checked = allChecked;
-    selectAll.indeterminate = someChecked && !allChecked;
+    topicItems.forEach(item => {
+        if (allTopicsSelected) {
+            item.classList.add('selected');
+        } else {
+            item.classList.remove('selected');
+        }
+    });
+
+    updateSelectAllButton();
+    validateQuizSettings();
+}
+
+function updateSelectAllButton() {
+    const topicItems = document.querySelectorAll('.topic-item');
+    const selectedCount = document.querySelectorAll('.topic-item.selected').length;
+    const totalCount = topicItems.length;
+    const selectAllBtn = document.querySelector('.select-all-btn');
+
+    if (selectedCount === totalCount) {
+        selectAllBtn.classList.add('all-selected');
+        selectAllBtn.querySelector('.btn-text').textContent = 'Deselect All';
+        allTopicsSelected = true;
+    } else if (selectedCount > 0) {
+        selectAllBtn.classList.remove('all-selected');
+        selectAllBtn.querySelector('.btn-text').textContent = 'Select All';
+        allTopicsSelected = false;
+    } else {
+        selectAllBtn.classList.remove('all-selected');
+        selectAllBtn.querySelector('.btn-text').textContent = 'Select All';
+        allTopicsSelected = false;
+    }
+}
+
+// Function to count total available flashcards from selected topics
+function getTotalFlashcardsFromSelectedTopics(selectedTopics) {
+    let totalFlashcards = 0;
+    selectedTopics.forEach(topicKey => {
+        const topicFlashcards = flashcardsData.filter(card => card.topic === topicKey);
+        totalFlashcards += topicFlashcards.length;
+    });
+    return totalFlashcards;
+}
+
+// Function to validate quiz settings
+function validateQuizSettings() {
+    const validationMessage = document.getElementById('quiz-validation-message');
+
+    const selectedTopicItems = document.querySelectorAll('.topic-item.selected');
+    const selectedTopics = Array.from(selectedTopicItems).map(item => item.getAttribute('data-topic'));
+
+    if (selectedTopics.length === 0) {
+        validationMessage.innerHTML = '<span style="color: #ff6b6b;">Please select at least one topic</span>';
+        return false;
+    }
+
+    const totalAvailableFlashcards = getTotalFlashcardsFromSelectedTopics(selectedTopics);
+    const requestedFlashcards = parseInt(document.getElementById('quiz-items').value) || 10;
+
+    if (requestedFlashcards > totalAvailableFlashcards) {
+        validationMessage.innerHTML = `<span style="color: #ff6b6b;">Not enough flashcards! Selected topics only have ${totalAvailableFlashcards} flashcards.</span>`;
+        return false;
+    } else {
+        validationMessage.innerHTML = `<span style="color: #51cf66;">${totalAvailableFlashcards} cards available from ${selectedTopics.length} topic${selectedTopics.length > 1 ? 's' : ''}</span>`;
+        return true;
+    }
 }
 
 function startStudySession() {
-    const checkboxes = document.querySelectorAll('#topicsChecklist input[type="checkbox"]:not(#selectAll)');
-    selectedStudyTopics = Array.from(checkboxes)
-        .filter(checkbox => checkbox.checked)
-        .map(checkbox => checkbox.value);
+    const selectedTopicItems = document.querySelectorAll('.topic-item.selected');
+    selectedStudyTopics = Array.from(selectedTopicItems).map(item => item.getAttribute('data-topic'));
 
     if (selectedStudyTopics.length === 0) {
         alert('Please select at least one topic to study.');
         return;
     }
 
-    // Store selected topics in sessionStorage and redirect
+    // Validate settings before proceeding
+    if (!validateQuizSettings()) {
+        return;
+    }
+
+    // Store selected topics in sessionStorage
     sessionStorage.setItem('studyTopics', JSON.stringify(selectedStudyTopics));
+
+    // Get number of flashcards/quiz items
+    const studyItems = parseInt(document.getElementById('quiz-items').value) || 10;
+
+    // FIXED: Changed from 'studyItems' to 'quizItems' to match flashcards_study.js
+    sessionStorage.setItem('quizItems', studyItems);
+
+    // Store mode
+    sessionStorage.setItem('studyMode', selectedMode);
+
+    // Redirect to study mode
     window.location.href = '/pipe-flashcards-study';
 }
 
@@ -554,6 +665,16 @@ window.addEventListener('resize', function() {
     const totalPages = getTotalPages();
     generatePageNumbers(totalPages, 'page-numbers-top');
     generatePageNumbers(totalPages, 'page-numbers-bottom');
+});
+
+// Add event listener for quiz items input change
+document.addEventListener('DOMContentLoaded', function() {
+    // This will run after the modal content is available
+    const quizItemsInput = document.getElementById('quiz-items');
+    if (quizItemsInput) {
+        quizItemsInput.addEventListener('input', validateQuizSettings);
+        quizItemsInput.addEventListener('change', validateQuizSettings);
+    }
 });
 
 // Initialize when the page loads

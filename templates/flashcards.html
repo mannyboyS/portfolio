@@ -32,20 +32,75 @@
     </div>
 
     <!-- Study Mode Modal -->
-    <div id="studyModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
+    <div id="studyModal" class="modern-modal">
+        <div class="modern-modal-content">
+            <div class="modern-modal-header">
                 <h2>Study Mode</h2>
-                <span class="close" onclick="closeStudyModal()">&times;</span>
+                <span class="modern-close" onclick="closeStudyModal()">&times;</span>
             </div>
-            <div class="modal-body">
-                <p>Select topics to include:</p>
-                <div class="topics-checklist" id="topicsChecklist">
-                    <!-- Topics will be populated by JavaScript -->
+
+            <div class="modern-modal-body">
+                <!-- Mode Selection Cards -->
+                <div class="mode-selection-cards">
+                    <div class="mode-card active" data-mode="flashcard" onclick="selectMode('flashcard')">
+                        <div class="mode-icon">📚</div>
+                        <div class="mode-info">
+                            <h3>Flashcard Mode</h3>
+                        </div>
+                        <div class="mode-indicator">
+                            <div class="indicator-dot"></div>
+                        </div>
+                    </div>
+
+                    <div class="mode-card" data-mode="quiz" onclick="selectMode('quiz')">
+                        <div class="mode-icon">🎯</div>
+                        <div class="mode-info">
+                            <h3>Quiz Mode</h3>
+                        </div>
+                        <div class="mode-indicator">
+                            <div class="indicator-dot"></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-actions">
-                    <button class="btn btn-secondary" onclick="closeStudyModal()">Cancel</button>
-                    <button class="btn btn-primary" onclick="startStudySession()">Start Studying</button>
+
+                <!-- Quiz Settings - Always visible -->
+                <div class="quiz-settings">
+                    <div class="number-input-container">
+                        <div class="number-input-content">
+                            <label>Number of Flashcards</label>
+                            <div class="number-input-wrapper">
+                                <button class="number-btn" onclick="adjustQuizItems(-5)">-</button>
+                                <input type="number" id="quiz-items" min="1" value="10" class="modern-number-input">
+                                <button class="number-btn" onclick="adjustQuizItems(5)">+</button>
+                            </div>
+                        </div>
+                        <div id="quiz-validation-message" class="validation-message">0 cards selected</div>
+                    </div>
+                </div>
+
+                <!-- Topics Selection -->
+                <div class="topics-section">
+                    <div class="section-header">
+                        <h4>Select Topics</h4>
+                        <button class="select-all-btn" onclick="toggleAllTopicsModern()">
+                            <span class="btn-text">Select All</span>
+                            <span class="check-icon">✓</span>
+                        </button>
+                    </div>
+
+                    <div class="topics-grid" id="topicsChecklist">
+                        <!-- Topics will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="modern-modal-actions">
+                    <button class="modern-btn modern-btn-secondary" onclick="closeStudyModal()">
+                        Cancel
+                    </button>
+                    <button class="modern-btn modern-btn-primary" onclick="startStudySession()">
+                        Start Studying
+                    </button>
                 </div>
             </div>
         </div>
