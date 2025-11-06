@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/flashcards_study.css') }}">
 </head>
 <body>
+    <!-- Fixed back button in top-left corner -->
+    <a href="/pipe-flashcards" class="back-button" title="Back to Grid View">←</a>
+
     <div class="container">
         <div class="header">
             <h1 id="mode-title">Study Mode</h1>
@@ -87,8 +90,8 @@
             </div>
             <div class="score-percentage" id="percentage">0%</div>
             <div class="results-actions">
-                <button class="btn-large" onclick="showMistakes()">📝 Review Mistakes</button>
-                <button class="btn-large" onclick="retryQuiz()">🔄 Try Again (Shuffled)</button>
+                <button class="btn-large" onclick="showMistakes()">🔍 Review Mistakes</button>
+                <button class="btn-large" onclick="retryQuiz()">🔄 Try Again</button>
                 <a href="/pipe-flashcards" class="btn-large btn-secondary">← Back to Topics</a>
             </div>
         </div>

@@ -545,9 +545,15 @@ body {
     transition: all 0.3s ease;
 }
 
-.number-btn:hover {
+.number-btn:hover:not(:disabled) {
     background: rgba(255,255,255,0.3);
     transform: scale(1.1);
+}
+
+.number-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: rgba(255,255,255,0.1);
 }
 
 .modern-number-input {
@@ -564,11 +570,18 @@ body {
     -moz-appearance: textfield;
     -webkit-appearance: none;
     appearance: none;
+    transition: all 0.3s ease;
 }
 
 .modern-number-input:focus {
     outline: none;
     border-color: rgba(255,255,255,0.5);
+}
+
+.modern-number-input:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: rgba(255,255,255,0.05);
 }
 
 .modern-number-input::-webkit-outer-spin-button,
@@ -579,6 +592,36 @@ body {
 
 .modern-number-input[type=number] {
     -moz-appearance: textfield;
+}
+
+/* Toggle Max Button */
+.toggle-max-btn {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.3); /* match number button */
+    color: white;
+    padding: 0 12px;
+    height: 35px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85em;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    min-width: 50px;
+}
+
+.toggle-max-btn:hover {
+    background: rgba(255,255,255,0.3); /* match hover brightness */
+    border-color: rgba(255,255,255,0.3);
+    transform: scale(1.1); /* same hover effect as number-btn */
+}
+
+.toggle-max-btn.active {
+    background: rgba(255,255,255,0.2);
+    border-color: rgba(255,255,255,0.4);
 }
 
 .validation-message {
@@ -625,14 +668,20 @@ body {
     font-size: 0.85em;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 6px;
     transition: all 0.3s ease;
+    min-width: 115px;
+    height: 32px;
+    box-sizing: border-box;
+    text-align: center;
 }
 
 .select-all-btn:hover {
     background: rgba(255,255,255,0.2);
-    transform: translateY(-1px);
 }
+
+
 
 .select-all-btn .check-icon {
     opacity: 0;

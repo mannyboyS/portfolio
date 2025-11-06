@@ -41,7 +41,8 @@ async function loadStudyData() {
                         choices: questionData.choices,
                         answer: questionData.answer,
                         topic: topicKey,
-                        topicName: topicData.category || topicKey // Store topic name for display
+                        topicName: topicData.category || formatTopicName(topicKey), // Use helper function
+                        topicId: topicData.id || topicKey // Use ID if available
                     });
                 }
             }
@@ -53,10 +54,20 @@ async function loadStudyData() {
             return;
         }
 
+        // SHUFFLE QUESTIONS FOR BOTH MODES
+        shuffleArray(studyCards);
+
+        // LIMIT CARDS FOR BOTH MODES based on studyItems/quizItems
         if (isQuizMode) {
             const quizItems = parseInt(sessionStorage.getItem('quizItems')) || 10;
-            initializeQuizMode(quizItems);
+            const numQuestions = Math.min(quizItems, studyCards.length);
+            studyCards = studyCards.slice(0, numQuestions);
+            totalQuestions = studyCards.length;
+            initializeQuizMode();
         } else {
+            const studyItems = parseInt(sessionStorage.getItem('studyItems')) || 10;
+            const numCards = Math.min(studyItems, studyCards.length);
+            studyCards = studyCards.slice(0, numCards);
             initializeFlashcardMode();
         }
 
@@ -64,6 +75,14 @@ async function loadStudyData() {
         console.error('Error loading study data:', error);
         alert('Failed to load study data.');
     }
+}
+
+// Helper function to format topic names from keys
+function formatTopicName(topicKey) {
+    return topicKey
+        .split('_')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
 }
 
 function initializeFlashcardMode() {
@@ -79,18 +98,13 @@ function initializeFlashcardMode() {
     updateButtonStates();
 }
 
-function initializeQuizMode(quizItems) {
+function initializeQuizMode() {
     document.getElementById('mode-title').textContent = 'Quiz Mode';
     document.getElementById('flashcard-mode').style.display = 'none';
     document.getElementById('quiz-mode').style.display = 'block';
     document.getElementById('results-screen').style.display = 'none';
     document.getElementById('mistakes-screen').style.display = 'none';
 
-    shuffleArray(studyCards);
-
-    const numQuestions = Math.min(quizItems, studyCards.length);
-    studyCards = studyCards.slice(0, numQuestions);
-    totalQuestions = studyCards.length;
     userAnswers = []; // Reset user answers
 
     document.getElementById('total-questions').textContent = totalQuestions;
@@ -135,13 +149,11 @@ function displayQuestion() {
     document.getElementById('current-question').textContent = currentQuestionIndex + 1;
     document.getElementById('quiz-question-text').textContent = currentCard.question;
 
-    const shuffledChoices = [...currentCard.choices];
-    shuffleArray(shuffledChoices);
-
     const choicesContainer = document.getElementById('choices-container');
     choicesContainer.innerHTML = '';
 
-    shuffledChoices.forEach((choice) => {
+    // DO NOT SHUFFLE CHOICES - keep A, B, C, D order
+    currentCard.choices.forEach((choice) => {
         const button = document.createElement('button');
         button.className = 'choice-btn';
         button.textContent = choice;
@@ -283,6 +295,7 @@ function retryQuiz() {
     answered = false;
     userAnswers = [];
 
+    // Reshuffle questions for new attempt
     shuffleArray(studyCards);
 
     document.getElementById('results-screen').style.display = 'none';

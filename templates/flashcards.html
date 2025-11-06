@@ -69,9 +69,12 @@
                         <div class="number-input-content">
                             <label>Number of Flashcards</label>
                             <div class="number-input-wrapper">
-                                <button class="number-btn" onclick="adjustQuizItems(-5)">-</button>
+                                <button class="number-btn" id="minus-btn" onclick="adjustQuizItems(-5)">-</button>
                                 <input type="number" id="quiz-items" min="1" value="10" class="modern-number-input">
-                                <button class="number-btn" onclick="adjustQuizItems(5)">+</button>
+                                <button class="number-btn" id="plus-btn" onclick="adjustQuizItems(5)">+</button>
+                                <button class="toggle-max-btn" id="toggle-max-btn" onclick="toggleMaxQuestions()" title="Use maximum available questions">
+                                    Max
+                                </button>
                             </div>
                         </div>
                         <div id="quiz-validation-message" class="validation-message">0 cards selected</div>
@@ -84,7 +87,6 @@
                         <h4>Select Topics</h4>
                         <button class="select-all-btn" onclick="toggleAllTopicsModern()">
                             <span class="btn-text">Select All</span>
-                            <span class="check-icon">✓</span>
                         </button>
                     </div>
 

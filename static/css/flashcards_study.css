@@ -23,6 +23,34 @@ body.mistakes-screen-active {
     max-width: 800px;
     width: 100%;
     margin: 0 auto;
+    position: relative;
+}
+
+/* Back button in top-left corner - MOBILE ONLY */
+.back-button {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: all 0.3s ease;
+    display: none; /* Hidden by default on desktop */
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    text-decoration: none;
+}
+
+.back-button:hover {
+    background: rgba(255,255,255,0.3);
+    transform: scale(1.05);
 }
 
 .header {
@@ -257,93 +285,6 @@ body.mistakes-screen-active {
     transform: translateY(-2px);
 }
 
-@media (max-width: 768px) {
-    body {
-        height: 100vh;
-        overflow-y: hidden;
-        padding: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding-bottom: max(15px, env(safe-area-inset-bottom));
-    }
-
-    .container {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .header {
-        margin-bottom: 15px;
-        flex-shrink: 0;
-    }
-
-    .header h1 {
-        font-size: 2em;
-    }
-
-    .card-counter {
-        margin-bottom: 15px;
-        flex-shrink: 0;
-    }
-
-    .flashcard-container {
-        margin-bottom: 20px;
-        flex: 0 1 auto;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .flashcard {
-        height: 350px;
-        max-height: 50vh;
-    }
-
-    .flashcard-front, .flashcard-back {
-        padding: 20px;
-    }
-
-    .question-text {
-        font-size: 1.05em;
-        margin-bottom: 15px;
-    }
-
-    .choices li {
-        font-size: 0.95em;
-        padding: 10px 0;
-    }
-
-    .answer {
-        font-size: 1.6em;
-    }
-
-    .controls {
-        margin-bottom: 15px;
-        flex-shrink: 0;
-        gap: 10px;
-    }
-
-    .btn {
-        padding: 12px 20px;
-        font-size: 1em;
-        height: 48px;
-    }
-
-    .progress-bar {
-        margin-bottom: 15px;
-        flex-shrink: 0;
-    }
-
-    .actions {
-        flex-shrink: 0;
-        padding-bottom: 1.5em;
-        margin-bottom: env(safe-area-inset-bottom);
-    }
-}
-
 /* Quiz Mode Styles */
 .quiz-card-container {
     background: rgba(255,255,255,0.95);
@@ -487,7 +428,6 @@ body.mistakes-screen-active {
     padding: 40px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.2);
     text-align: center;
-    /* Remove top padding since no heading */
     padding-top: 20px;
 }
 
@@ -496,7 +436,6 @@ body.mistakes-screen-active {
     overflow-y: auto;
     margin: 20px 0;
     text-align: left;
-    /* Same scrollbar style as flashcards */
     scrollbar-width: thin;
     scrollbar-color: transparent transparent;
 }
@@ -618,14 +557,93 @@ body.mistakes-screen-active {
     margin-bottom: 10px;
 }
 
+/* Mobile Optimizations */
 @media (max-width: 768px) {
-    .quiz-card-container, .results-screen, .mistakes-screen {
-        padding: 25px;
-        min-height: auto;
+    body {
+        padding: 80px 15px 15px 15px;
+        min-height: 100vh;
+        height: auto;
+        overflow-y: auto;
     }
 
-    .mistakes-screen {
-        padding-top: 15px;
+    .back-button {
+        display: flex; /* Show on mobile */
+    }
+
+    .container {
+        height: auto;
+        min-height: calc(100vh - 95px);
+        display: flex;
+        flex-direction: column;
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+    }
+
+    .header {
+        margin-bottom: 15px;
+        padding-top: 10px;
+    }
+
+    .header h1 {
+        font-size: 2em;
+    }
+
+    .card-counter {
+        margin-bottom: 15px;
+        font-size: 1.2em;
+    }
+
+    .flashcard-container {
+        margin-bottom: 20px;
+    }
+
+    .flashcard {
+        height: 350px;
+        max-height: 50vh;
+    }
+
+    .flashcard-front, .flashcard-back {
+        padding: 20px;
+    }
+
+    .question-text {
+        font-size: 1.05em;
+        margin-bottom: 15px;
+    }
+
+    .choices li {
+        font-size: 0.95em;
+        padding: 10px 0;
+    }
+
+    .answer {
+        font-size: 1.6em;
+    }
+
+    .controls {
+        margin-bottom: 15px;
+        gap: 10px;
+    }
+
+    .btn {
+        padding: 12px 20px;
+        font-size: 1em;
+        height: 48px;
+        min-height: 48px;
+    }
+
+    .progress-bar {
+        margin-bottom: 15px;
+    }
+
+    .actions {
+        display: none; /* Hide on mobile - use back button instead */
+    }
+
+    /* Quiz Mode Mobile */
+    .quiz-card-container {
+        padding: 25px;
+        min-height: auto;
+        margin-bottom: 15px;
     }
 
     .quiz-card-container .question-text {
@@ -634,24 +652,53 @@ body.mistakes-screen-active {
     }
 
     .choice-btn {
-        padding: 12px 15px;
+        padding: 14px 16px;
         font-size: 1em;
+        min-height: 52px;
+    }
+
+    /* Results Screen Mobile */
+    .results-screen {
+        padding: 25px;
+        margin-bottom: 20px;
+    }
+
+    .results-screen h2 {
+        font-size: 2em;
+        margin-bottom: 15px;
     }
 
     .score-display {
         font-size: 2.5em;
+        margin: 20px 0;
     }
 
     .score-percentage {
         font-size: 1.3em;
+        margin-bottom: 25px;
     }
 
     .results-actions {
         flex-direction: column;
+        gap: 12px;
     }
 
     .btn-large {
         width: 100%;
+        padding: 14px 20px;
+        font-size: 1em;
+    }
+
+    /* Mistakes Screen Mobile */
+    .mistakes-screen {
+        padding: 20px;
+        padding-top: 15px;
+        margin-bottom: 20px;
+    }
+
+    .mistakes-container {
+        max-height: 400px;
+        margin: 15px 0;
     }
 
     .mistake-card {
@@ -666,6 +713,7 @@ body.mistakes-screen-active {
 
     .mistake-header h4 {
         min-width: auto;
+        font-size: 1em;
     }
 
     .topic-badge {
@@ -678,19 +726,32 @@ body.mistakes-screen-active {
         flex-direction: column;
         align-items: flex-start;
         gap: 5px;
+        padding: 10px 12px;
     }
 
     .answer-label {
         min-width: auto;
+        font-size: 0.95em;
     }
 
-    .mistakes-container {
-        max-height: 400px;
-        margin: 15px 0;
+    .answer-text {
+        font-size: 0.95em;
+    }
+
+    .mistake-question {
+        font-size: 1em;
     }
 }
 
 @media (max-width: 480px) {
+    body {
+        padding: 70px 12px 12px 12px;
+    }
+
+    .header h1 {
+        font-size: 1.75em;
+    }
+
     .quiz-card-container {
         padding: 20px;
     }
@@ -701,11 +762,11 @@ body.mistakes-screen-active {
 
     .choice-btn {
         font-size: 0.95em;
+        padding: 12px 14px;
     }
 
     .mistakes-screen {
-        padding: 20px;
-        padding-top: 15px;
+        padding: 15px;
     }
 
     .mistake-card {
@@ -717,7 +778,8 @@ body.mistakes-screen-active {
         padding: 4px 10px;
     }
 
-    .mistake-question {
-        font-size: 1em;
+    .btn-large {
+        font-size: 0.95em;
+        padding: 12px 16px;
     }
 }

@@ -1,5 +1,5 @@
 {
-  "diesel_plant": {
+  "diesel_plant": {"id": "001",
     "category": "Diesel Plant",
     "questions": {
       "1": {
@@ -504,7 +504,7 @@
       }
     }
   },
-  "gas_turbine": {
+  "gas_turbine": {"id": "002",
     "category": "Gas Turbine",
     "questions": {
       "1": {
@@ -1019,7 +1019,7 @@
       }
     }
   },
-  "steam_power_plant": {
+  "steam_power_plant": {"id": "003",
     "category": "Steam Power Plant",
     "questions": {
       "1": {
@@ -1614,7 +1614,7 @@
       }
     }
   },
-  "geothermal_plant": {
+  "geothermal_plant": {"id": "004",
     "category": "Geothermal Plant",
     "questions": {
       "1": {
@@ -2069,7 +2069,7 @@
       }
     }
   },
-  "nuclear_plant": {
+  "nuclear_plant": {"id": "005",
     "category": "Nuclear Plant",
     "questions": {
       "1": {
@@ -2413,7 +2413,7 @@
       }
     }
   },
-  "boilers": {
+  "boilers": {"id": "006",
     "category": "Boilers",
     "questions": {
       "1": {
@@ -3887,7 +3887,7 @@
       }
     }
   },
-  "hydroelectric_plant": {
+  "hydroelectric_plant": {"id": "007",
     "category": "Hydroelectric Plant",
     "questions": {
       "1": {
@@ -5092,7 +5092,7 @@
       }
     }
   },
-  "variable_load_environmental_eng": {
+  "variable_load_environmental_eng": {"id": "008",
     "category": "Variable Load & Environmental Eng'g",
     "questions": {
       "1": {
@@ -6345,7 +6345,7 @@
       }
     }
   },
-  "fluid_mechanics": {
+  "fluid_mechanics": {"id": "009",
     "category": "Fluid Mechanics",
     "questions": {
       "1": {
@@ -7619,7 +7619,7 @@
       }
     }
   },
-  "fluid_machinery": {
+  "fluid_machinery": {"id": "010",
     "category": "Fluid Machinery",
     "questions": {
       "1": {
@@ -8583,7 +8583,7 @@
       }
     }
   },
-  "heat_transfer": {
+  "heat_transfer": {"id": "011",
     "category": "Heat Transfer",
     "questions": {
       "1": {
@@ -10006,7 +10006,7 @@
       }
     }
   },
-  "refrigeration": {
+  "refrigeration": {"id": "012",
     "category": "Refrigeration",
     "questions": {
       "1": {
@@ -13981,7 +13981,7 @@
       }
     }
   },
-  "air_conditioning": {
+  "air_conditioning": {"id": "013",
     "category": "Air Conditioning",
     "questions": {
       "1": {
@@ -15196,7 +15196,7 @@
       }
     }
   },
-  "machine_foundation_and_chimney": {
+  "machine_foundation_and_chimney": {"id": "014",
     "category": "Machine Foundation and Chimney",
     "questions": {
       "1": {
@@ -15701,7 +15701,7 @@
       }
     }
   },
-  "instrumentation": {
+  "instrumentation": {"id": "015",
     "category": "Instrumentation",
     "questions": {
       "1": {
@@ -16056,7 +16056,7 @@
       }
     }
   },
-  "basic_electrical_engineering": {
+  "basic_electrical_engineering": {"id": "016",
     "category": "Basic Electrical Engineering",
     "questions": {
       "1": {
@@ -16431,7 +16431,7 @@
       }
     }
   },
-  "latest_board_question": {
+  "latest_board_question": {"id": "017",
     "category": "Latest Board Questions",
     "questions": {
       "1": {

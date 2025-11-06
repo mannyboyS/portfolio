@@ -10,6 +10,7 @@ let selectedStudyTopics = [];
 // Modern Modal Variables
 let selectedMode = 'flashcard';
 let allTopicsSelected = false;
+let isMaxQuestionsEnabled = false; // NEW: Track if max toggle is active
 
 // Load data from JSON file via Flask route
 async function loadFlashcardsData() {
@@ -26,56 +27,36 @@ async function loadFlashcardsData() {
         topics = [];
         let globalQuestionNumber = 1;
 
-        // Define the exact topic order from JSON
-        const topicOrder = [
-            'diesel_plant',
-            'gas_turbine',
-            'steam_power_plant',
-            'geothermal_plant',
-            'nuclear_plant',
-            'boilers',
-            'hydroelectric_plant',
-            'variable_load_environmental_eng',
-            'fluid_mechanics',
-            'fluid_machinery',
-            'heat_transfer',
-            'refrigeration',
-            'air_conditioning',
-            'machine_foundation_and_chimney',
-            'instrumentation',
-            'basic_electrical_engineering',
-            'latest_board_question'
-        ];
-
-        // Process topics in the defined order
-        topicOrder.forEach(topicKey => {
+        // DYNAMIC TOPIC LOADING - Remove hardcoded topic order
+        Object.keys(data).forEach(topicKey => {
             const topicData = data[topicKey];
-            if (topicData) {
-                const topicName = topicData.category || topicKey;
-                topics.push({ key: topicKey, name: topicName });
+            if (topicData && topicData.questions) {
+                const topicName = topicData.category || formatTopicName(topicKey);
+                const topicId = topicData.id || topicKey;
+                topics.push({
+                    key: topicKey,
+                    name: topicName,
+                    id: topicId
+                });
 
-                // Convert questions to our format with sequential numbering
                 for (const [questionId, questionData] of Object.entries(topicData.questions)) {
                     flashcardsData.push({
-                        number: globalQuestionNumber, // Use sequential numbering
-                        originalNumber: parseInt(questionId), // Keep original for reference
+                        number: globalQuestionNumber,
+                        originalNumber: parseInt(questionId),
                         question: questionData.question,
                         choices: questionData.choices,
                         answer: questionData.answer,
-                        topic: topicKey
+                        topic: topicKey,
+                        topicId: topicId
                     });
                     globalQuestionNumber++;
                 }
             }
         });
 
-        // Initialize with all data
+        topics.sort((a, b) => a.id.localeCompare(b.id));
         filteredFlashcardsData = [...flashcardsData];
-
-        // Populate topic dropdown
         populateTopicDropdown();
-
-        // Render the flashcards
         renderFlashcards();
 
     } catch (error) {
@@ -85,44 +66,25 @@ async function loadFlashcardsData() {
     }
 }
 
+function formatTopicName(topicKey) {
+    return topicKey
+        .split('_')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+}
+
 function populateTopicDropdown() {
     const topicSelect = document.getElementById('topicSelect');
 
-    // Clear existing options except "All Topics"
     while (topicSelect.children.length > 1) {
         topicSelect.removeChild(topicSelect.lastChild);
     }
 
-    // Define the exact order from your JSON
-    const topicOrder = [
-        'diesel_plant',
-        'gas_turbine',
-        'steam_power_plant',
-        'geothermal_plant',
-        'nuclear_plant',
-        'boilers',
-        'hydroelectric_plant',
-        'variable_load_environmental_eng',
-        'fluid_mechanics',
-        'fluid_machinery',
-        'heat_transfer',
-        'refrigeration',
-        'air_conditioning',
-        'machine_foundation_and_chimney',
-        'instrumentation',
-        'basic_electrical_engineering',
-        'latest_board_question'
-    ];
-
-    // Add topics in the exact JSON order
-    topicOrder.forEach(topicKey => {
-        const topic = topics.find(t => t.key === topicKey);
-        if (topic) {
-            const option = document.createElement('option');
-            option.value = topic.key;
-            option.textContent = topic.name;
-            topicSelect.appendChild(option);
-        }
+    topics.forEach(topic => {
+        const option = document.createElement('option');
+        option.value = topic.key;
+        option.textContent = topic.name;
+        topicSelect.appendChild(option);
     });
 }
 
@@ -132,15 +94,19 @@ function openStudyModal() {
     modal.style.display = 'block';
     populateStudyTopicsChecklist();
 
-    // Show "0 cards selected" in white text initially
+    // Reset max toggle state
+    isMaxQuestionsEnabled = false;
+    const toggleBtn = document.getElementById('toggle-max-btn');
+    if (toggleBtn) {
+        toggleBtn.classList.remove('active');
+    }
+
     const validationMessage = document.getElementById('quiz-validation-message');
     validationMessage.innerHTML = '<span style="color: white;">0 cards selected</span>';
     validationMessage.style.display = 'block';
 
-    // Reset to default mode - NO auto-select
     selectMode('flashcard');
 
-    // Clear all selections by default
     const topicItems = document.querySelectorAll('.topic-item');
     topicItems.forEach(item => {
         item.classList.remove('selected');
@@ -156,7 +122,6 @@ function closeStudyModal() {
 function selectMode(mode) {
     selectedMode = mode;
 
-    // Update mode cards
     document.querySelectorAll('.mode-card').forEach(card => {
         card.classList.remove('active');
     });
@@ -164,6 +129,8 @@ function selectMode(mode) {
 }
 
 function adjustQuizItems(change) {
+    if (isMaxQuestionsEnabled) return; // Don't adjust if max is enabled
+
     const input = document.getElementById('quiz-items');
     let value = parseInt(input.value) || 10;
     value = Math.max(1, value + change);
@@ -171,12 +138,52 @@ function adjustQuizItems(change) {
     validateQuizSettings();
 }
 
+// NEW: Toggle max questions function
+function toggleMaxQuestions() {
+    isMaxQuestionsEnabled = !isMaxQuestionsEnabled;
+
+    const toggleBtn = document.getElementById('toggle-max-btn');
+    const input = document.getElementById('quiz-items');
+    const minusBtn = document.getElementById('minus-btn');
+    const plusBtn = document.getElementById('plus-btn');
+
+    if (isMaxQuestionsEnabled) {
+        // Enable max mode
+        toggleBtn.classList.add('active');
+        input.disabled = true;
+        minusBtn.disabled = true;
+        plusBtn.disabled = true;
+
+        // Set to max available questions
+        updateMaxQuestions();
+    } else {
+        // Disable max mode
+        toggleBtn.classList.remove('active');
+        input.disabled = false;
+        minusBtn.disabled = false;
+        plusBtn.disabled = false;
+    }
+
+    validateQuizSettings();
+}
+
+// NEW: Update the number to max available
+function updateMaxQuestions() {
+    const selectedTopicItems = document.querySelectorAll('.topic-item.selected');
+    const selectedTopics = Array.from(selectedTopicItems).map(item => item.getAttribute('data-topic'));
+
+    if (selectedTopics.length > 0) {
+        const maxAvailable = getTotalFlashcardsFromSelectedTopics(selectedTopics);
+        const input = document.getElementById('quiz-items');
+        input.value = maxAvailable;
+    }
+}
+
 function populateStudyTopicsChecklist() {
     const checklist = document.getElementById('topicsChecklist');
     checklist.innerHTML = '';
 
     topics.forEach(topic => {
-        // Count flashcards for this topic
         const flashcardCount = flashcardsData.filter(card => card.topic === topic.key).length;
 
         const topicItem = document.createElement('div');
@@ -198,6 +205,12 @@ function populateStudyTopicsChecklist() {
 
 function toggleTopicModern(topicElement) {
     topicElement.classList.toggle('selected');
+
+    // Update max questions if toggle is active
+    if (isMaxQuestionsEnabled) {
+        updateMaxQuestions();
+    }
+
     validateQuizSettings();
     updateSelectAllButton();
 }
@@ -213,6 +226,11 @@ function toggleAllTopicsModern() {
             item.classList.remove('selected');
         }
     });
+
+    // Update max questions if toggle is active
+    if (isMaxQuestionsEnabled) {
+        updateMaxQuestions();
+    }
 
     updateSelectAllButton();
     validateQuizSettings();
@@ -239,7 +257,6 @@ function updateSelectAllButton() {
     }
 }
 
-// Function to count total available flashcards from selected topics
 function getTotalFlashcardsFromSelectedTopics(selectedTopics) {
     let totalFlashcards = 0;
     selectedTopics.forEach(topicKey => {
@@ -249,7 +266,6 @@ function getTotalFlashcardsFromSelectedTopics(selectedTopics) {
     return totalFlashcards;
 }
 
-// Function to validate quiz settings
 function validateQuizSettings() {
     const validationMessage = document.getElementById('quiz-validation-message');
 
@@ -263,6 +279,12 @@ function validateQuizSettings() {
 
     const totalAvailableFlashcards = getTotalFlashcardsFromSelectedTopics(selectedTopics);
     const requestedFlashcards = parseInt(document.getElementById('quiz-items').value) || 10;
+
+    if (isMaxQuestionsEnabled) {
+        // When max is enabled, show that we're using all available
+        validationMessage.innerHTML = `<span style="color: #51cf66;">Using all ${totalAvailableFlashcards} cards from ${selectedTopics.length} topic${selectedTopics.length > 1 ? 's' : ''}</span>`;
+        return true;
+    }
 
     if (requestedFlashcards > totalAvailableFlashcards) {
         validationMessage.innerHTML = `<span style="color: #ff6b6b;">Not enough flashcards! Selected topics only have ${totalAvailableFlashcards} flashcards.</span>`;
@@ -282,28 +304,21 @@ function startStudySession() {
         return;
     }
 
-    // Validate settings before proceeding
     if (!validateQuizSettings()) {
         return;
     }
 
-    // Store selected topics in sessionStorage
     sessionStorage.setItem('studyTopics', JSON.stringify(selectedStudyTopics));
 
-    // Get number of flashcards/quiz items
     const studyItems = parseInt(document.getElementById('quiz-items').value) || 10;
 
-    // FIXED: Changed from 'studyItems' to 'quizItems' to match flashcards_study.js
+    sessionStorage.setItem('studyItems', studyItems);
     sessionStorage.setItem('quizItems', studyItems);
-
-    // Store mode
     sessionStorage.setItem('studyMode', selectedMode);
 
-    // Redirect to study mode
     window.location.href = '/pipe-flashcards-study';
 }
 
-// Close modal when clicking outside
 window.onclick = function(event) {
     const modal = document.getElementById('studyModal');
     if (event.target === modal) {
@@ -318,17 +333,14 @@ function filterByTopic(topic) {
     if (topic === 'all') {
         filteredFlashcardsData = [...flashcardsData];
     } else {
-        // For individual topics, renumber starting from 1
         const topicQuestions = flashcardsData.filter(card => card.topic === topic);
         filteredFlashcardsData = topicQuestions.map((card, index) => ({
             ...card,
-            number: index + 1 // Renumber within topic
+            number: index + 1
         }));
     }
 
-    // Reset flipped cards when changing topic
     flippedCards.clear();
-
     renderFlashcards();
 }
 
@@ -387,10 +399,8 @@ function renderFlashcards() {
 
 function updatePagination() {
     const totalPages = getTotalPages();
-
     document.getElementById('page-cards').textContent = getCurrentPageCards().length;
 
-    // Update button states for TOP pagination
     const prevBtnTop = document.getElementById('prev-page-btn-top');
     const nextBtnTop = document.getElementById('next-page-btn-top');
     const firstBtnTop = document.getElementById('first-btn-top');
@@ -398,41 +408,24 @@ function updatePagination() {
 
     if (prevBtnTop) {
         prevBtnTop.disabled = currentPage === 1;
-        if (currentPage === 1) {
-            prevBtnTop.classList.add('disabled');
-        } else {
-            prevBtnTop.classList.remove('disabled');
-        }
+        prevBtnTop.classList.toggle('disabled', currentPage === 1);
     }
 
     if (nextBtnTop) {
         nextBtnTop.disabled = currentPage === totalPages;
-        if (currentPage === totalPages) {
-            nextBtnTop.classList.add('disabled');
-        } else {
-            nextBtnTop.classList.remove('disabled');
-        }
+        nextBtnTop.classList.toggle('disabled', currentPage === totalPages);
     }
 
     if (firstBtnTop) {
         firstBtnTop.disabled = currentPage === 1;
-        if (currentPage === 1) {
-            firstBtnTop.classList.add('disabled');
-        } else {
-            firstBtnTop.classList.remove('disabled');
-        }
+        firstBtnTop.classList.toggle('disabled', currentPage === 1);
     }
 
     if (lastBtnTop) {
         lastBtnTop.disabled = currentPage === totalPages;
-        if (currentPage === totalPages) {
-            lastBtnTop.classList.add('disabled');
-        } else {
-            lastBtnTop.classList.remove('disabled');
-        }
+        lastBtnTop.classList.toggle('disabled', currentPage === totalPages);
     }
 
-    // Update button states for BOTTOM pagination
     const prevBtnBottom = document.getElementById('prev-page-btn-bottom');
     const nextBtnBottom = document.getElementById('next-page-btn-bottom');
     const firstBtnBottom = document.getElementById('first-btn-bottom');
@@ -440,41 +433,24 @@ function updatePagination() {
 
     if (prevBtnBottom) {
         prevBtnBottom.disabled = currentPage === 1;
-        if (currentPage === 1) {
-            prevBtnBottom.classList.add('disabled');
-        } else {
-            prevBtnBottom.classList.remove('disabled');
-        }
+        prevBtnBottom.classList.toggle('disabled', currentPage === 1);
     }
 
     if (nextBtnBottom) {
         nextBtnBottom.disabled = currentPage === totalPages;
-        if (currentPage === totalPages) {
-            nextBtnBottom.classList.add('disabled');
-        } else {
-            nextBtnBottom.classList.remove('disabled');
-        }
+        nextBtnBottom.classList.toggle('disabled', currentPage === totalPages);
     }
 
     if (firstBtnBottom) {
         firstBtnBottom.disabled = currentPage === 1;
-        if (currentPage === 1) {
-            firstBtnBottom.classList.add('disabled');
-        } else {
-            firstBtnBottom.classList.remove('disabled');
-        }
+        firstBtnBottom.classList.toggle('disabled', currentPage === 1);
     }
 
     if (lastBtnBottom) {
         lastBtnBottom.disabled = currentPage === totalPages;
-        if (currentPage === totalPages) {
-            lastBtnBottom.classList.add('disabled');
-        } else {
-            lastBtnBottom.classList.remove('disabled');
-        }
+        lastBtnBottom.classList.toggle('disabled', currentPage === totalPages);
     }
 
-    // Generate page numbers for both top and bottom
     generatePageNumbers(totalPages, 'page-numbers-top');
     generatePageNumbers(totalPages, 'page-numbers-bottom');
 }
@@ -483,57 +459,47 @@ function generatePageNumbers(totalPages, containerId) {
     const pageNumbersContainer = document.getElementById(containerId);
     if (!pageNumbersContainer) return;
 
-    // Determine max visible pages based on screen size
     let maxVisible;
     if (window.innerWidth < 480) {
-        maxVisible = 3; // Very small screens: show only 3 numbers
+        maxVisible = 3;
     } else if (window.innerWidth < 768) {
-        maxVisible = 5; // Small screens: show 5 numbers
+        maxVisible = 5;
     } else {
-        maxVisible = 7; // Larger screens: show 7 numbers
+        maxVisible = 7;
     }
 
     let pages = [];
 
     if (totalPages <= maxVisible) {
-        // Show all pages if total is less than max visible
         pages = Array.from({ length: totalPages }, (_, i) => i + 1);
     } else {
-        // Always show first page
         pages.push(1);
 
         let startPage, endPage;
 
         if (currentPage <= Math.floor(maxVisible / 2) + 1) {
-            // Near the beginning
             startPage = 2;
             endPage = maxVisible - 1;
         } else if (currentPage >= totalPages - Math.floor(maxVisible / 2)) {
-            // Near the end
             startPage = totalPages - maxVisible + 2;
             endPage = totalPages - 1;
         } else {
-            // In the middle
             startPage = currentPage - Math.floor((maxVisible - 2) / 2);
             endPage = currentPage + Math.floor((maxVisible - 2) / 2);
         }
 
-        // Add ellipsis after first page if needed
         if (startPage > 2) {
             pages.push('...');
         }
 
-        // Add middle pages
         for (let i = startPage; i <= endPage; i++) {
             pages.push(i);
         }
 
-        // Add ellipsis before last page if needed
         if (endPage < totalPages - 1) {
             pages.push('...');
         }
 
-        // Always show last page
         pages.push(totalPages);
     }
 
@@ -545,15 +511,12 @@ function generatePageNumbers(totalPages, containerId) {
         const isActive = page === currentPage;
         const activeClass = isActive ? 'active' : '';
 
-        // Add mobile classes for responsive hiding - ALL elements stay in same row
         let mobileClass = '';
         if (window.innerWidth < 480) {
-            // On very small screens, only show first, current, and last pages
             if (page !== 1 && page !== totalPages && page !== currentPage) {
                 mobileClass = 'mobile-hidden-sm';
             }
         } else if (window.innerWidth < 768) {
-            // On small screens, hide some middle pages
             if (page !== 1 && page !== totalPages &&
                 Math.abs(page - currentPage) > 1) {
                 mobileClass = 'mobile-hidden';
@@ -660,24 +623,28 @@ function lastPage() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Add resize listener to regenerate pagination on screen size change
 window.addEventListener('resize', function() {
     const totalPages = getTotalPages();
     generatePageNumbers(totalPages, 'page-numbers-top');
     generatePageNumbers(totalPages, 'page-numbers-bottom');
 });
 
-// Add event listener for quiz items input change
 document.addEventListener('DOMContentLoaded', function() {
-    // This will run after the modal content is available
     const quizItemsInput = document.getElementById('quiz-items');
     if (quizItemsInput) {
-        quizItemsInput.addEventListener('input', validateQuizSettings);
-        quizItemsInput.addEventListener('change', validateQuizSettings);
+        quizItemsInput.addEventListener('input', function() {
+            if (!isMaxQuestionsEnabled) {
+                validateQuizSettings();
+            }
+        });
+        quizItemsInput.addEventListener('change', function() {
+            if (!isMaxQuestionsEnabled) {
+                validateQuizSettings();
+            }
+        });
     }
 });
 
-// Initialize when the page loads
 document.addEventListener('DOMContentLoaded', function() {
     loadFlashcardsData();
 });
