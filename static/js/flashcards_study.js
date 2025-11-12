@@ -22,11 +22,13 @@ async function loadStudyData() {
         }
 
         const response = await fetch('/get-flashcards-data');
-        const data = await response.json();
+        const fullData = await response.json();
 
-        if (data.error) {
-            throw new Error(data.error);
+        if (fullData.error) {
+            throw new Error(fullData.error);
         }
+
+        const data = fullData.topics;
 
         studyCards = [];
         let cardNumber = 1;

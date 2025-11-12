@@ -86,7 +86,6 @@ def send_mail():
 def index():
     return render_template('flashcards.html')
 
-
 @app.route('/get-flashcards-data')
 def get_flashcards_data():
     import json

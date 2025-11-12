@@ -16,11 +16,17 @@ let isMaxQuestionsEnabled = false; // NEW: Track if max toggle is active
 async function loadFlashcardsData() {
     try {
         const response = await fetch('/get-flashcards-data');
-        const data = await response.json();
+        const fullData = await response.json();
 
-        if (data.error) {
-            throw new Error(data.error);
+        if (fullData.error) {
+            throw new Error(fullData.error);
         }
+
+        // Update page title and description
+        document.getElementById('page-title').textContent = fullData.title || 'Flashcards';
+        document.getElementById('page-description').textContent = fullData.description || 'Multiple Choice Flashcards';
+
+        const data = fullData.topics;
 
         // Process the JSON data into our flashcards format
         flashcardsData = [];
