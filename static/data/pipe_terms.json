@@ -22455,9 +22455,1006 @@
           "answer": "B. Speed is too fast"
         }
       }
+    },
+    "machine_design_from_notes": {
+      "id": "023",
+      "category": "Machine Design from Notes",
+      "questions": {
+        "1": {
+          "question": "A rotating member that is used to transmit power:",
+          "choices": [
+            "A. axle",
+            "B. spindle",
+            "C. shaft",
+            "D. countershaft"
+          ],
+          "answer": "C. shaft"
+        },
+        "2": {
+          "question": "A stationary member carrying rotating wheels, pulleys:",
+          "choices": [
+            "A. line shaft",
+            "B. axle",
+            "C. machine shaft",
+            "D. transmission shaft"
+          ],
+          "answer": "B. axle"
+        },
+        "3": {
+          "question": "Transmission shaft driven by prime mover:",
+          "choices": [
+            "A. countershaft",
+            "B. line shaft",
+            "C. machine shaft",
+            "D. spindle"
+          ],
+          "answer": "B. line shaft"
+        },
+        "4": {
+          "question": "Short axles and shafts are called:",
+          "choices": [
+            "A. spindles",
+            "B. countershafts",
+            "C. line shafts",
+            "D. machine shafts"
+          ],
+          "answer": "A. spindles"
+        },
+        "5": {
+          "question": "Shaft which is an integral part of the machine:",
+          "choices": [
+            "A. line shaft",
+            "B. countershaft",
+            "C. machine shaft",
+            "D. transmission shaft"
+          ],
+          "answer": "C. machine shaft"
+        },
+        "6": {
+          "question": "Transmission shaft intermediate between the line shaft and the driven machine:",
+          "choices": [
+            "A. main shaft",
+            "B. countershaft",
+            "C. machine shaft",
+            "D. transmission shaft"
+          ],
+          "answer": "B. countershaft"
+        },
+        "7": {
+          "question": "A key that allows axial movement between shaft and hub:",
+          "choices": [
+            "A. woodruff key",
+            "B. square key",
+            "C. feather key",
+            "D. kennedy key"
+          ],
+          "answer": "C. feather key"
+        },
+        "8": {
+          "question": "A type of key that is semicircular in shape:",
+          "choices": [
+            "A. square key",
+            "B. woodruff key",
+            "C. flat key",
+            "D. kennedy key"
+          ],
+          "answer": "B. woodruff key"
+        },
+        "9": {
+          "question": "A type of key that has two rectangular cross-sections at right angles:",
+          "choices": [
+            "A. square key",
+            "B. barth key",
+            "C. kennedy key",
+            "D. woodruff key"
+          ],
+          "answer": "C. kennedy key"
+        },
+        "10": {
+          "question": "A type of key that transmits torque through friction only:",
+          "choices": [
+            "A. square key",
+            "B. saddle key",
+            "C. woodruff key",
+            "D. kennedy key"
+          ],
+          "answer": "B. saddle key"
+        },
+        "11": {
+          "question": "A type of key that is circular in cross-section:",
+          "choices": [
+            "A. square key",
+            "B. flat key",
+            "C. round key",
+            "D. woodruff key"
+          ],
+          "answer": "C. round key"
+        },
+        "12": {
+          "question": "A key with a head for easy removal:",
+          "choices": [
+            "A. saddle key",
+            "B. gib-head key",
+            "C. feather key",
+            "D. barth key"
+          ],
+          "answer": "B. gib-head key"
+        },
+        "13": {
+          "question": "For the same material, the recommended key width is:",
+          "choices": [
+            "A. D/2",
+            "B. D/3",
+            "C. D/4",
+            "D. D/5"
+          ],
+          "answer": "C. D/4"
+        },
+        "14": {
+          "question": "For the same material, the recommended key length is:",
+          "choices": [
+            "A. 0.8D",
+            "B. 1.0D",
+            "C. 1.2D",
+            "D. 1.5D"
+          ],
+          "answer": "C. 1.2D"
+        },
+        "15": {
+          "question": "A mechanical device used to connect lengths of shafts permanently:",
+          "choices": [
+            "A. clutch",
+            "B. coupling",
+            "C. brake",
+            "D. bearing"
+          ],
+          "answer": "B. coupling"
+        },
+        "16": {
+          "question": "In flange couplings, the force transmitted per bolt equals:",
+          "choices": [
+            "A. total force / number of bolts",
+            "B. torque / bolt circle radius",
+            "C. power / speed",
+            "D. shear force × number of bolts"
+          ],
+          "answer": "A. total force / number of bolts"
+        },
+        "17": {
+          "question": "A device which is used to regulate or stop the motion of a body:",
+          "choices": [
+            "A. clutch",
+            "B. brake",
+            "C. coupling",
+            "D. bearing"
+          ],
+          "answer": "B. brake"
+        },
+        "18": {
+          "question": "A simple band brake becomes self-locking when:",
+          "choices": [
+            "A. Fa is zero or negative",
+            "B. Fa is maximum",
+            "C. Fa equals friction force",
+            "D. Fa equals spring force"
+          ],
+          "answer": "A. Fa is zero or negative"
+        },
+        "19": {
+          "question": "A machine member which is used to connect shafts so they can be engaged and disengaged at will:",
+          "choices": [
+            "A. brake",
+            "B. coupling",
+            "C. clutch",
+            "D. bearing"
+          ],
+          "answer": "C. clutch"
+        },
+        "20": {
+          "question": "For uniform pressure in disc clutches, the mean friction radius is:",
+          "choices": [
+            "A. (R+r)/2",
+            "B. 2(R³-r³)/3(R²-r²)",
+            "C. R only",
+            "D. r only"
+          ],
+          "answer": "B. 2(R³-r³)/3(R²-r²)"
+        },
+        "21": {
+          "question": "For uniform wear in disc clutches, the mean friction radius is:",
+          "choices": [
+            "A. (R+r)/2",
+            "B. 2(R³-r³)/3(R²-r²)",
+            "C. R only",
+            "D. r only"
+          ],
+          "answer": "A. (R+r)/2"
+        },
+        "22": {
+          "question": "In cone clutches, the normal force equals:",
+          "choices": [
+            "A. axial force / sin α",
+            "B. axial force × sin α",
+            "C. axial force / cos α",
+            "D. axial force × cos α"
+          ],
+          "answer": "A. axial force / sin α"
+        },
+        "23": {
+          "question": "A rotating energy reservoir which absorbs and delivers energy during different portions of the operating cycle:",
+          "choices": [
+            "A. governor",
+            "B. flywheel",
+            "C. rotor",
+            "D. impeller"
+          ],
+          "answer": "B. flywheel"
+        },
+        "24": {
+          "question": "The coefficient of fluctuation is the ratio of:",
+          "choices": [
+            "A. speed difference to average speed",
+            "B. energy stored to weight",
+            "C. diameter to thickness",
+            "D. weight to volume"
+          ],
+          "answer": "A. speed difference to average speed"
+        },
+        "25": {
+          "question": "Threaded fasteners used to hold together machine members requiring easy dismantling:",
+          "choices": [
+            "A. rivets",
+            "B. welds",
+            "C. bolts and screws",
+            "D. pins"
+          ],
+          "answer": "C. bolts and screws"
+        },
+        "26": {
+          "question": "The axial distance between adjacent threads:",
+          "choices": [
+            "A. lead",
+            "B. pitch",
+            "C. depth",
+            "D. major diameter"
+          ],
+          "answer": "B. pitch"
+        },
+        "27": {
+          "question": "The axial distance a thread advances in one revolution:",
+          "choices": [
+            "A. pitch",
+            "B. lead",
+            "C. thread depth",
+            "D. minor diameter"
+          ],
+          "answer": "B. lead"
+        },
+        "28": {
+          "question": "The smallest diameter of the threads:",
+          "choices": [
+            "A. major diameter",
+            "B. pitch diameter",
+            "C. minor diameter",
+            "D. nominal diameter"
+          ],
+          "answer": "C. minor diameter"
+        },
+        "29": {
+          "question": "The outside diameter of threads and the nominal diameter:",
+          "choices": [
+            "A. minor diameter",
+            "B. pitch diameter",
+            "C. major diameter",
+            "D. stress diameter"
+          ],
+          "answer": "C. major diameter"
+        },
+        "30": {
+          "question": "The mean of major and minor diameters of threads:",
+          "choices": [
+            "A. nominal diameter",
+            "B. pitch diameter",
+            "C. stress diameter",
+            "D. effective diameter"
+          ],
+          "answer": "B. pitch diameter"
+        },
+        "31": {
+          "question": "For general use except where other types are recommended:",
+          "choices": [
+            "A. UNF thread",
+            "B. UNEF thread",
+            "C. UNC thread",
+            "D. metric thread"
+          ],
+          "answer": "C. UNC thread"
+        },
+        "32": {
+          "question": "Frequently used in automotive and aircraft work where fine adjustment is required:",
+          "choices": [
+            "A. UNC thread",
+            "B. UNF thread",
+            "C. UNEF thread",
+            "D. acme thread"
+          ],
+          "answer": "B. UNF thread"
+        },
+        "33": {
+          "question": "Used in aeronautical equipment where very fine adjustment is required:",
+          "choices": [
+            "A. UNC thread",
+            "B. UNF thread",
+            "C. UNEF thread",
+            "D. square thread"
+          ],
+          "answer": "C. UNEF thread"
+        },
+        "34": {
+          "question": "A type of thread form with 14.5° angle used in power screws:",
+          "choices": [
+            "A. square thread",
+            "B. acme thread",
+            "C. buttress thread",
+            "D. V-thread"
+          ],
+          "answer": "B. acme thread"
+        },
+        "35": {
+          "question": "A type of thread form with 7° angle on one side and 45° on the other:",
+          "choices": [
+            "A. square thread",
+            "B. acme thread",
+            "C. buttress thread",
+            "D. trapezoidal thread"
+          ],
+          "answer": "C. buttress thread"
+        },
+        "36": {
+          "question": "For single threaded screws, the lead equals:",
+          "choices": [
+            "A. pitch",
+            "B. 2 times pitch",
+            "C. 3 times pitch",
+            "D. half the pitch"
+          ],
+          "answer": "A. pitch"
+        },
+        "37": {
+          "question": "For double threaded screws, the lead equals:",
+          "choices": [
+            "A. pitch",
+            "B. 2 times pitch",
+            "C. 3 times pitch",
+            "D. half the pitch"
+          ],
+          "answer": "B. 2 times pitch"
+        },
+        "38": {
+          "question": "The distance from any point on one thread to the corresponding point on the next turn of the same thread:",
+          "choices": [
+            "A. pitch",
+            "B. lead",
+            "C. thread depth",
+            "D. major diameter"
+          ],
+          "answer": "B. lead"
+        },
+        "39": {
+          "question": "The depth of tap for cast iron is typically:",
+          "choices": [
+            "A. 1.0D",
+            "B. 1.25D",
+            "C. 1.5D",
+            "D. 2.0D"
+          ],
+          "answer": "C. 1.5D"
+        },
+        "40": {
+          "question": "The depth of tap for steel is typically:",
+          "choices": [
+            "A. 1.0D",
+            "B. 1.25D",
+            "C. 1.5D",
+            "D. 2.0D"
+          ],
+          "answer": "B. 1.25D"
+        },
+        "41": {
+          "question": "In power screws, the efficiency is maximum when:",
+          "choices": [
+            "A. tan x = √(1+f²) - f",
+            "B. tan x = f",
+            "C. tan x = 1",
+            "D. tan x = 0"
+          ],
+          "answer": "A. tan x = √(1+f²) - f"
+        },
+        "42": {
+          "question": "Used in transmitting power between parallel shafts with single or multiple strands:",
+          "choices": [
+            "A. belts and pulleys",
+            "B. gears",
+            "C. roller chain and sprocket",
+            "D. direct coupling"
+          ],
+          "answer": "C. roller chain and sprocket"
+        },
+        "43": {
+          "question": "In roller chain designation RC40, the number 4 indicates:",
+          "choices": [
+            "A. chain pitch in inches",
+            "B. number of 1/8 inches in pitch",
+            "C. chain width",
+            "D. number of strands"
+          ],
+          "answer": "B. number of 1/8 inches in pitch"
+        },
+        "44": {
+          "question": "In roller chain designation, Y=0 indicates:",
+          "choices": [
+            "A. lightweight chain",
+            "B. rollerless bushing chain",
+            "C. chains of usual proportion",
+            "D. heavy duty chain"
+          ],
+          "answer": "C. chains of usual proportion"
+        },
+        "45": {
+          "question": "The angle between two adjacent teeth of a sprocket:",
+          "choices": [
+            "A. 180°/T",
+            "B. 360°/T",
+            "C. 90°/T",
+            "D. 270°/T"
+          ],
+          "answer": "B. 360°/T"
+        },
+        "46": {
+          "question": "A belt connection where the pulleys rotate in the same direction:",
+          "choices": [
+            "A. crossed belt",
+            "B. open belt",
+            "C. quarter-turn belt",
+            "D. serpentine belt"
+          ],
+          "answer": "B. open belt"
+        },
+        "47": {
+          "question": "A belt connection where the pulleys rotate in opposite directions:",
+          "choices": [
+            "A. crossed belt",
+            "B. open belt",
+            "C. quarter-turn belt",
+            "D. serpentine belt"
+          ],
+          "answer": "A. crossed belt"
+        },
+        "48": {
+          "question": "In belt drives, the angle of contact is larger on the:",
+          "choices": [
+            "A. smaller pulley",
+            "B. larger pulley",
+            "C. driver pulley",
+            "D. driven pulley"
+          ],
+          "answer": "B. larger pulley"
+        },
+        "49": {
+          "question": "In V-belts, the arc of contact on the smaller sheave is:",
+          "choices": [
+            "A. larger than on larger sheave",
+            "B. smaller than on larger sheave",
+            "C. equal to larger sheave",
+            "D. independent of sheave size"
+          ],
+          "answer": "B. smaller than on larger sheave"
+        },
+        "50": {
+          "question": "The tension ratio in belts when centrifugal tension is neglected:",
+          "choices": [
+            "A. F1/F2 = e^fθ",
+            "B. F1/F2 = fθ",
+            "C. F1-F2 = e^fθ",
+            "D. F2/F1 = e^fθ"
+          ],
+          "answer": "A. F1/F2 = e^fθ"
+        },
+        "51": {
+          "question": "The maximum tension in a belt is limited by:",
+          "choices": [
+            "A. belt width and design stress",
+            "B. pulley diameter only",
+            "C. center distance only",
+            "D. belt speed only"
+          ],
+          "answer": "A. belt width and design stress"
+        },
+        "52": {
+          "question": "Bearings that use balls or rollers to reduce friction:",
+          "choices": [
+            "A. sliding bearings",
+            "B. journal bearings",
+            "C. anti-friction bearings",
+            "D. thrust bearings"
+          ],
+          "answer": "C. anti-friction bearings"
+        },
+        "53": {
+          "question": "Bearings where the shaft rotates directly in the bearing material:",
+          "choices": [
+            "A. ball bearings",
+            "B. roller bearings",
+            "C. sliding bearings",
+            "D. needle bearings"
+          ],
+          "answer": "C. sliding bearings"
+        },
+        "54": {
+          "question": "The difference between bearing diameter and journal diameter:",
+          "choices": [
+            "A. radial clearance",
+            "B. diametral clearance",
+            "C. tolerance",
+            "D. interference"
+          ],
+          "answer": "B. diametral clearance"
+        },
+        "55": {
+          "question": "Half the difference between bearing diameter and journal diameter:",
+          "choices": [
+            "A. radial clearance",
+            "B. diametral clearance",
+            "C. tolerance",
+            "D. interference"
+          ],
+          "answer": "A. radial clearance"
+        },
+        "56": {
+          "question": "The bearing modulus is defined as:",
+          "choices": [
+            "A. un/p",
+            "B. p/un",
+            "C. u/np",
+            "D. np/u"
+          ],
+          "answer": "A. un/p"
+        },
+        "57": {
+          "question": "For ball bearings made of hardened alloy steel on grooved races, k1 equals:",
+          "choices": [
+            "A. 550",
+            "B. 1000",
+            "C. 1500",
+            "D. 2000"
+          ],
+          "answer": "D. 2000"
+        },
+        "58": {
+          "question": "For roller bearings made of hardened alloy steel, k2 equals:",
+          "choices": [
+            "A. 7000",
+            "B. 10,000",
+            "C. 550",
+            "D. 1500"
+          ],
+          "answer": "B. 10,000"
+        },
+        "59": {
+          "question": "The life factor for bearings depends on:",
+          "choices": [
+            "A. desired life and catalog life",
+            "B. speed only",
+            "C. load only",
+            "D. temperature only"
+          ],
+          "answer": "A. desired life and catalog life"
+        },
+        "60": {
+          "question": "The speed factor for bearings depends on:",
+          "choices": [
+            "A. actual speed and catalog speed",
+            "B. load only",
+            "C. life only",
+            "D. temperature only"
+          ],
+          "answer": "A. actual speed and catalog speed"
+        },
+        "61": {
+          "question": "Gears used to connect intersecting shafts, usually at right angles:",
+          "choices": [
+            "A. helical gears",
+            "B. worm gears",
+            "C. bevel gears",
+            "D. spur gears"
+          ],
+          "answer": "C. bevel gears"
+        },
+        "62": {
+          "question": "In helical gears, the angle between the tooth and the gear axis:",
+          "choices": [
+            "A. pressure angle",
+            "B. helix angle",
+            "C. lead angle",
+            "D. face angle"
+          ],
+          "answer": "B. helix angle"
+        },
+        "63": {
+          "question": "The number of teeth that a helical gear would have if it were a spur gear:",
+          "choices": [
+            "A. actual teeth",
+            "B. virtual teeth",
+            "C. form teeth",
+            "D. equivalent teeth"
+          ],
+          "answer": "B. virtual teeth"
+        },
+        "64": {
+          "question": "Used where high-speed ratios of 10:1 and above are desired:",
+          "choices": [
+            "A. helical gears",
+            "B. worm gears",
+            "C. bevel gears",
+            "D. spur gears"
+          ],
+          "answer": "B. worm gears"
+        },
+        "65": {
+          "question": "The angle between the tangent to the pitch helix and the plane of rotation in worm gears:",
+          "choices": [
+            "A. pressure angle",
+            "B. helix angle",
+            "C. lead angle",
+            "D. face angle"
+          ],
+          "answer": "C. lead angle"
+        },
+        "66": {
+          "question": "In worm gears, the lead angle of the worm equals:",
+          "choices": [
+            "A. pressure angle of gear",
+            "B. helix angle of gear",
+            "C. face angle of gear",
+            "D. cutting angle of gear"
+          ],
+          "answer": "B. helix angle of gear"
+        },
+        "67": {
+          "question": "In worm gears, the number of threads on the worm for a single-threaded worm:",
+          "choices": [
+            "A. 1",
+            "B. 2",
+            "C. 3",
+            "D. 4"
+          ],
+          "answer": "A. 1"
+        },
+        "68": {
+          "question": "The speed ratio of worm gears equals:",
+          "choices": [
+            "A. Nw/Ng = Tg/Tw",
+            "B. Nw/Ng = Tw/Tg",
+            "C. Nw/Ng = Dg/Dw",
+            "D. Nw/Ng = Dw/Dg"
+          ],
+          "answer": "A. Nw/Ng = Tg/Tw"
+        },
+        "69": {
+          "question": "In bevel gears, the sum of pitch angles equals:",
+          "choices": [
+            "A. pressure angle",
+            "B. shaft angle",
+            "C. helix angle",
+            "D. face angle"
+          ],
+          "answer": "B. shaft angle"
+        },
+        "70": {
+          "question": "For shafts at right angles, the pitch angle of the pinion is found by:",
+          "choices": [
+            "A. tan ap = Ng/Np",
+            "B. tan ap = Np/Ng",
+            "C. sin ap = Ng/Np",
+            "D. cos ap = Np/Ng"
+          ],
+          "answer": "A. tan ap = Ng/Np"
+        },
+        "71": {
+          "question": "The face angle of a bevel gear equals:",
+          "choices": [
+            "A. pitch angle + addendum angle",
+            "B. pitch angle - dedendum angle",
+            "C. shaft angle - pitch angle",
+            "D. pressure angle + helix angle"
+          ],
+          "answer": "A. pitch angle + addendum angle"
+        },
+        "72": {
+          "question": "The cutting angle of a bevel gear equals:",
+          "choices": [
+            "A. pitch angle + addendum angle",
+            "B. pitch angle - dedendum angle",
+            "C. shaft angle - pitch angle",
+            "D. pressure angle + helix angle"
+          ],
+          "answer": "B. pitch angle - dedendum angle"
+        },
+        "73": {
+          "question": "A process of joining metal by heating to a state of fusion permitting it to flow into a solid joint:",
+          "choices": [
+            "A. brazing",
+            "B. soldering",
+            "C. welding",
+            "D. riveting"
+          ],
+          "answer": "C. welding"
+        },
+        "74": {
+          "question": "A type of weld used to hold parts of a weldment in proper alignment until final welds are made:",
+          "choices": [
+            "A. fillet weld",
+            "B. butt weld",
+            "C. tack weld",
+            "D. groove weld"
+          ],
+          "answer": "C. tack weld"
+        },
+        "75": {
+          "question": "In welded joints, the throat thickness of a fillet weld equals:",
+          "choices": [
+            "A. b sin 45°",
+            "B. b cos 45°",
+            "C. b tan 45°",
+            "D. b / sin 45°"
+          ],
+          "answer": "A. b sin 45°"
+        },
+        "76": {
+          "question": "Used for pressure vessels, building structures, tanks, and bridges:",
+          "choices": [
+            "A. welded joints",
+            "B. bolted joints",
+            "C. riveted joints",
+            "D. adhesive joints"
+          ],
+          "answer": "C. riveted joints"
+        },
+        "77": {
+          "question": "Before driving, the rivet diameter is typically:",
+          "choices": [
+            "A. equal to the hole diameter",
+            "B. 1/16 inch less than the hole",
+            "C. 1/16 inch more than the hole",
+            "D. 1/8 inch less than the hole"
+          ],
+          "answer": "B. 1/16 inch less than the hole"
+        },
+        "78": {
+          "question": "After driving, the rivet diameter becomes:",
+          "choices": [
+            "A. smaller than the hole",
+            "B. equal to the hole",
+            "C. larger than the hole",
+            "D. 1/16 inch less than the hole"
+          ],
+          "answer": "B. equal to the hole"
+        },
+        "79": {
+          "question": "In wire ropes, the designation 6x19 means:",
+          "choices": [
+            "A. 6 strands with 19 wires each",
+            "B. 19 strands with 6 wires each",
+            "C. 6 inch diameter with 19 wires",
+            "D. 19 inch diameter with 6 strands"
+          ],
+          "answer": "A. 6 strands with 19 wires each"
+        },
+        "80": {
+          "question": "For 6x7 wire ropes, the approximate wire diameter is:",
+          "choices": [
+            "A. 0.106d",
+            "B. 0.063d",
+            "C. 0.045d",
+            "D. 0.050d"
+          ],
+          "answer": "A. 0.106d"
+        },
+        "81": {
+          "question": "For 6x19 wire ropes, the approximate wire diameter is:",
+          "choices": [
+            "A. 0.106d",
+            "B. 0.063d",
+            "C. 0.045d",
+            "D. 0.050d"
+          ],
+          "answer": "B. 0.063d"
+        },
+        "82": {
+          "question": "For 6x37 wire ropes, the approximate wire diameter is:",
+          "choices": [
+            "A. 0.106d",
+            "B. 0.063d",
+            "C. 0.045d",
+            "D. 0.050d"
+          ],
+          "answer": "C. 0.045d"
+        },
+        "83": {
+          "question": "The modulus of elasticity for steel wire ropes is approximately:",
+          "choices": [
+            "A. 12,000,000 psi",
+            "B. 30,000,000 psi",
+            "C. 6,000,000 psi",
+            "D. 20,000,000 psi"
+          ],
+          "answer": "A. 12,000,000 psi"
+        },
+        "84": {
+          "question": "A type of fit for splines when the connection must slide when not under load:",
+          "choices": [
+            "A. permanent fit",
+            "B. sliding fit without load",
+            "C. sliding fit under load",
+            "D. interference fit"
+          ],
+          "answer": "B. sliding fit without load"
+        },
+        "85": {
+          "question": "The angle between two shafts connected by bevel gears:",
+          "choices": [
+            "A. pressure angle",
+            "B. shaft angle",
+            "C. helix angle",
+            "D. lead angle"
+          ],
+          "answer": "B. shaft angle"
+        },
+        "86": {
+          "question": "In bevel gears, the angle between the gear axis and the line of teeth:",
+          "choices": [
+            "A. pressure angle",
+            "B. pitch angle",
+            "C. face angle",
+            "D. cutting angle"
+          ],
+          "answer": "B. pitch angle"
+        },
+        "87": {
+          "question": "Units of viscosity where 1 reyn = 1 lb-sec/in²:",
+          "choices": [
+            "A. poise",
+            "B. stoke",
+            "C. reyn",
+            "D. centipoise"
+          ],
+          "answer": "C. reyn"
+        },
+        "88": {
+          "question": "The ratio of lateral unit deformation to axial unit deformation:",
+          "choices": [
+            "A. Young's modulus",
+            "B. shear modulus",
+            "C. Poisson's ratio",
+            "D. bulk modulus"
+          ],
+          "answer": "C. Poisson's ratio"
+        },
+        "89": {
+          "question": "A total resistance that a material offers to an applied load:",
+          "choices": [
+            "A. strain",
+            "B. stress",
+            "C. elasticity",
+            "D. plasticity"
+          ],
+          "answer": "B. stress"
+        },
+        "90": {
+          "question": "The stress that would cause failure:",
+          "choices": [
+            "A. yield stress",
+            "B. allowable stress",
+            "C. ultimate stress",
+            "D. design stress"
+          ],
+          "answer": "C. ultimate stress"
+        },
+        "91": {
+          "question": "Maximum stress without causing deformation:",
+          "choices": [
+            "A. ultimate stress",
+            "B. yield stress",
+            "C. allowable stress",
+            "D. working stress"
+          ],
+          "answer": "B. yield stress"
+        },
+        "92": {
+          "question": "Stress used in determining the size of a member:",
+          "choices": [
+            "A. ultimate stress",
+            "B. yield stress",
+            "C. design stress",
+            "D. allowable stress"
+          ],
+          "answer": "C. design stress"
+        },
+        "93": {
+          "question": "Stress caused by forces trying to cut or slice through a material:",
+          "choices": [
+            "A. tensile stress",
+            "B. compressive stress",
+            "C. shearing stress",
+            "D. bearing stress"
+          ],
+          "answer": "C. shearing stress"
+        },
+        "94": {
+          "question": "Stress caused by forces pressing against a surface:",
+          "choices": [
+            "A. tensile stress",
+            "B. compressive stress",
+            "C. shearing stress",
+            "D. bearing stress"
+          ],
+          "answer": "D. bearing stress"
+        },
+        "95": {
+          "question": "The ability of a material to absorb energy when deformed elastically and return to it when unloaded:",
+          "choices": [
+            "A. toughness",
+            "B. resilience",
+            "C. ductility",
+            "D. plasticity"
+          ],
+          "answer": "B. resilience"
+        },
+        "96": {
+          "question": "A metal characteristic that absorbs extreme deformation without rupture:",
+          "choices": [
+            "A. hardness",
+            "B. ductility",
+            "C. plasticity",
+            "D. toughness"
+          ],
+          "answer": "C. plasticity"
+        },
+        "97": {
+          "question": "The purpose of annealing is to make a metal:",
+          "choices": [
+            "A. harder",
+            "B. medium hard",
+            "C. softer",
+            "D. shiny"
+          ],
+          "answer": "C. softer"
+        },
+        "98": {
+          "question": "When hole is smaller than the shaft, the allowance is negative and is termed as:",
+          "choices": [
+            "A. negative fits",
+            "B. negative allowance",
+            "C. interference of metals",
+            "D. clearance fit"
+          ],
+          "answer": "C. interference of metals"
+        },
+        "99": {
+          "question": "The ratio of coil to wire diameter in springs:",
+          "choices": [
+            "A. spring rate",
+            "B. spring index",
+            "C. Wahl's factor",
+            "D. spring scale"
+          ],
+          "answer": "B. spring index"
+        }
+      }
     }
   }
 }
+
 
 
 
